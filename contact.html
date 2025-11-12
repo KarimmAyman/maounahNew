@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - شركة معونة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { 
+            font-family: 'Cairo', sans-serif; 
+        }
+        
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background: #2563eb;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* تكبير اللوجو بدون تكبير الهيدر */
+        .logo-large {
+            height: 120px;
+            width: 120px;
+            object-fit: contain;
+            transform: translateY(10px);
+        }
+
+        @media (max-width: 768px) {
+            .logo-large {
+                height: 120px;
+                width: 120px;
+                transform: translateY(5px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center py-2">
+                <!-- Logo Center -->
+                <div class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative">
+                    <img src="logo.svg" alt="Logo" class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300" />
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="flex items-center w-full md:w-auto justify-center">
+                    <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
+                        <li><a href="index.html" class="nav-link text-gray-700 hover:text-blue-600">الرئيسية</a></li>
+                        <li><a href="products.html" class="nav-link text-gray-700 hover:text-blue-600">المنتجات</a></li>
+                        <li><a href="about.html" class="nav-link text-gray-700 hover:text-blue-600">من نحن</a></li>
+                        <li><a href="contact.html" class="nav-link text-blue-600 font-bold">تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700 absolute left-4 top-5">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <ul class="py-4 px-4 space-y-3">
+                <li><a href="index.html" class="block text-gray-700 py-2">الرئيسية</a></li>
+                <li><a href="products.html" class="block text-gray-700 py-2">المنتجات</a></li>
+                <li><a href="about.html" class="block text-gray-700 py-2">من نحن</a></li>
+                <li><a href="contact.html" class="block text-blue-600 font-bold py-2">تواصل معنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-gradient-to-r from-blue-900 to-blue-600 text-white py-20 mt-32 md:mt-36">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4">تواصل معنا</h1>
+            <p class="text-xl">نحن هنا للإجابة على استفساراتك وخدمتك على مدار الساعة</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="contact-card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl text-center shadow-lg">
+                    <div class="w-20 h-20 bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">الهاتف</h3>
+                    <p class="text-gray-600 text-lg mb-2" dir="ltr">+966 11 234 5678</p>
+                    <p class="text-gray-600 text-lg" dir="ltr">+966 50 123 4567</p>
+                    <p class="text-sm text-gray-500 mt-3">الأحد - الخميس: 9 صباحاً - 6 مساءً</p>
+                </div>
+
+                <div class="contact-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-3xl text-center shadow-lg">
+                    <div class="w-20 h-20 bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">البريد الإلكتروني</h3>
+                    <p class="text-gray-600 text-lg mb-2" dir="ltr">info@maona.sa</p>
+                    <p class="text-gray-600 text-lg" dir="ltr">sales@maona.sa</p>
+                    <p class="text-sm text-gray-500 mt-3">سنرد عليك خلال 24 ساعة</p>
+                </div>
+
+                <div class="contact-card bg-gradient-to-br from-sky-50 to-sky-100 p-8 rounded-3xl text-center shadow-lg">
+                    <div class="w-20 h-20 bg-blue-600 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">العنوان</h3>
+                    <p class="text-gray-600 text-lg mb-2">الرياض، المملكة العربية السعودية</p>
+                    <p class="text-gray-600 text-lg">حي الملك فهد، طريق الملك عبدالله</p>
+                    <p class="text-sm text-gray-500 mt-3">زورنا في مقرنا الرئيسي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="py-20 bg-blue-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">تابعنا على وسائل التواصل الاجتماعي</h2>
+            <p class="text-xl mb-10 opacity-90">ابق على اطلاع بآخر أخبارنا ومنتجاتنا</p>
+            <div class="flex justify-center gap-6 flex-wrap">
+                <a href="#" class="w-16 h-16 bg-white text-blue-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white text-green-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white text-pink-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white text-blue-400 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white text-red-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="w-16 h-16 bg-white text-blue-700 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">موقعنا</h2>
+                <p class="text-xl text-gray-600">زورنا في مقرنا الرئيسي بالرياض</p>
+            </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-gray-200 rounded-3xl overflow-hidden shadow-2xl" style="height: 400px;">
+                    <div class="w-full h-full flex items-center justify-center text-gray-500">
+                        <div class="text-center">
+                            <i class="fas fa-map-marked-alt text-6xl mb-4"></i>
+                            <p class="text-xl font-bold">خريطة الموقع</p>
+                            <p class="text-gray-600 mt-2">الرياض - حي الملك فهد - طريق الملك عبدالله</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
+                    <p class="text-gray-400">احد اكبر الموردين من جميع دول العالم لمنتجات المطاعم والفنادق في المملكة العربية السعودية</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">الرئيسية</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white">المنتجات</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">من نحن</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">الفئات</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html#maona" class="text-gray-400 hover:text-white">منتجات معونة</a></li>
+                        <li><a href="products.html#makin" class="text-gray-400 hover:text-white">منتجات ماكين</a></li>
+                        <li><a href="products.html#atyab" class="text-gray-400 hover:text-white">منتجات أطياب</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+                    <div class="flex space-x-reverse space-x-4 text-2xl">
+                        <a href="#" class="text-gray-400 hover:text-blue-500 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
