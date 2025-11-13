@@ -1,327 +1,477 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>من نحن - شركة معونة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
-        * { font-family: 'Cairo', sans-serif; }
-        
-        .value-card {
-            transition: transform 0.3s ease;
-        }
-        .value-card:hover {
-            transform: scale(1.05);
-        }
-        .timeline-item {
-            position: relative;
-            padding-right: 50px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            right: 18px;
-            top: 30px;
-            bottom: -30px;
-            width: 2px;
-            background: linear-gradient(180deg, #2563eb, #60a5fa);
-        }
-        .timeline-item:last-child::before {
-            display: none;
-        }
-        .timeline-dot {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #2563eb;
-            box-shadow: 0 0 0 4px #dbeafe;
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            right: 0;
-            background: #2563eb;
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
+      * {
+        font-family: "Cairo", sans-serif;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          #4a5568 0%,
+          #5dade2 50%,
+          #85c1e9 100%
+        );
+      }
+
+      .value-card {
+        transition: transform 0.3s ease;
+      }
+      .value-card:hover {
+        transform: scale(1.05);
+      }
+      .timeline-item {
+        position: relative;
+        padding-right: 50px;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        right: 18px;
+        top: 30px;
+        bottom: -30px;
+        width: 2px;
+        background: linear-gradient(180deg, #5dade2, #85c1e9);
+      }
+      .timeline-item:last-child::before {
+        display: none;
+      }
+      .timeline-dot {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #5dade2;
+        box-shadow: 0 0 0 4px #dbeafe;
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        right: 0;
+        background: linear-gradient(90deg, #5dade2, #85c1e9);
+        transition: width 0.3s;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .logo-large {
+        height: 120px;
+        width: 120px;
+        object-fit: contain;
+        transform: translateY(10px);
+      }
+
+      @media (max-width: 768px) {
         .logo-large {
-            height: 120px;
-            width: 120px;
-            object-fit: contain;
-            transform: translateY(10px);
+          height: 120px;
+          width: 120px;
+          transform: translateY(5px);
         }
-        
-        @media (max-width: 768px) {
-            .logo-large {
-                height: 120px;
-                width: 120px;
-                transform: translateY(5px);
-            }
-        }
+      }
     </style>
-</head>
-<body class="bg-gray-50">
+  </head>
+  <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-md fixed w-full top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center py-2">
-                <!-- Logo Center -->
-                <div class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative">
-                    <img src="logo.svg" alt="Logo" class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300" />
-                </div>
+      <div class="container mx-auto px-4">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center py-2"
+        >
+          <!-- Logo Center -->
+          <div
+            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative"
+          >
+            <img
+              src="logo.svg"
+              alt="Logo"
+              class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300"
+            />
+          </div>
 
-                <!-- Navigation Links -->
-                <div class="flex items-center w-full md:w-auto justify-center">
-                    <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
-                        <li><a href="index.html" class="nav-link text-gray-700 hover:text-blue-600">الرئيسية</a></li>
-                        <li><a href="products.html" class="nav-link text-gray-700 hover:text-blue-600">المنتجات</a></li>
-                        <li><a href="about.html" class="nav-link text-blue-600 font-bold">من نحن</a></li>
-                        <li><a href="contact.html" class="nav-link text-gray-700 hover:text-blue-600">تواصل معنا</a></li>
-                    </ul>
-                </div>
-
-                <!-- Mobile Button -->
-                <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700 absolute left-4 top-5">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
-            <ul class="py-4 px-4 space-y-3">
-                <li><a href="index.html" class="block text-gray-700 py-2">الرئيسية</a></li>
-                <li><a href="products.html" class="block text-gray-700 py-2">المنتجات</a></li>
-                <li><a href="about.html" class="block text-blue-600 font-bold py-2">من نحن</a></li>
-                <li><a href="contact.html" class="block text-gray-700 py-2">تواصل معنا</a></li>
+          <!-- Navigation Links -->
+          <div class="flex items-center w-full md:w-auto justify-center">
+            <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
+              <li>
+                <a
+                  href="index.html"
+                  class="nav-link text-gray-700 hover:text-sky-400"
+                  >الرئيسية</a
+                >
+              </li>
+              <li>
+                <a
+                  href="products.html"
+                  class="nav-link text-gray-700 hover:text-sky-400"
+                  >المنتجات</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="nav-link text-sky-400 font-bold"
+                  >من نحن</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="nav-link text-gray-700 hover:text-sky-400"
+                  >تواصل معنا</a
+                >
+              </li>
             </ul>
+          </div>
+
+          <!-- Mobile Button -->
+          <button
+            id="mobileMenuBtn"
+            class="md:hidden text-2xl text-gray-700 absolute left-4 top-5"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+        <ul class="py-4 px-4 space-y-3">
+          <li>
+            <a href="index.html" class="block text-gray-700 py-2">الرئيسية</a>
+          </li>
+          <li>
+            <a href="products.html" class="block text-gray-700 py-2"
+              >المنتجات</a
+            >
+          </li>
+          <li>
+            <a href="about.html" class="block text-sky-400 font-bold py-2"
+              >من نحن</a
+            >
+          </li>
+          <li>
+            <a href="contact.html" class="block text-gray-700 py-2"
+              >تواصل معنا</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="bg-gradient-to-r from-blue-900 to-blue-600 text-white py-20 mt-32 md:mt-36">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-5xl font-bold mb-4">من نحن</h1>
-            <p class="text-xl">تعرف على قصتنا ورؤيتنا</p>
-        </div>
+    <section class="hero-gradient text-white py-20 mt-32 md:mt-36">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-5xl font-bold mb-4">من نحن</h1>
+        <p class="text-xl">تعرف على قصتنا ورؤيتنا</p>
+      </div>
     </section>
 
     <!-- Company Story -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-6">قصتنا</h2>
-                    <div class="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
-                </div>
-                <div class="text-lg text-gray-700 leading-relaxed space-y-6">
-                    <p>
-                        شركة معونة هي إحدى الشركات الرائدة في مجال توريد وتوزيع المنتجات الغذائية للمطاعم والفنادق في المملكة العربية السعودية. 
-                        نفتخر بكوننا أحد أكبر الموردين من جميع دول العالم، حيث نقدم منتجات عالية الجودة تلبي احتياجات عملائنا في قطاع الضيافة والمطاعم.
-                    </p>
-                    <p>
-                        تأسست شركتنا على مبادئ الجودة والالتزام والتميز في الخدمة. نؤمن بأن نجاح عملائنا من المطاعم والفنادق يعتمد على جودة المنتجات التي نوفرها،
-                        ولذلك نحرص على اختيار أفضل الموردين العالميين ونتبع أعلى معايير التخزين والتوزيع.
-                    </p>
-                    <p>
-                        نقدم ثلاث فئات رئيسية من المنتجات: منتجات معونة الغذائية المتنوعة، منتجات ماكين للدجاج المقرمش، ومنتجات أطياب من اللحوم والمأكولات الشرقية. 
-                        كل فئة مصممة لتلبية احتياجات المطاعم والفنادق المختلفة وتقديم أفضل تجربة لضيوفهم.
-                    </p>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">قصتنا</h2>
+            <div
+              class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto mb-8"
+            ></div>
+          </div>
+          <div class="text-lg text-gray-700 leading-relaxed space-y-6">
+            <p>
+              شركة معونة هي إحدى الشركات الرائدة في مجال توريد وتوزيع المنتجات
+              الغذائية للمطاعم والفنادق في المملكة العربية السعودية. نفتخر
+              بكوننا أحد أكبر الموردين من جميع دول العالم، حيث نقدم منتجات عالية
+              الجودة تلبي احتياجات عملائنا في قطاع الضيافة والمطاعم.
+            </p>
+            <p>
+              تأسست شركتنا على مبادئ الجودة والالتزام والتميز في الخدمة. نؤمن
+              بأن نجاح عملائنا من المطاعم والفنادق يعتمد على جودة المنتجات التي
+              نوفرها، ولذلك نحرص على اختيار أفضل الموردين العالميين ونتبع أعلى
+              معايير التخزين والتوزيع.
+            </p>
+            <p>
+              نقدم ثلاث فئات رئيسية من المنتجات: منتجات معونة الغذائية المتنوعة،
+              منتجات ماكين للدجاج المقرمش، ومنتجات أطياب من اللحوم والمأكولات
+              الشرقية. كل فئة مصممة لتلبية احتياجات المطاعم والفنادق المختلفة
+              وتقديم أفضل تجربة لضيوفهم.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Vision & Mission -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="bg-white p-10 rounded-3xl shadow-lg">
-                    <div class="text-5xl mb-6 text-blue-600">🎯</div>
-                    <h3 class="text-3xl font-bold text-gray-800 mb-4">رؤيتنا</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        أن نكون الشريك الأول والأوثق للمطاعم والفنادق في المملكة العربية السعودية في توريد المنتجات الغذائية عالية الجودة، 
-                        ونساهم في نجاح أعمالهم من خلال تقديم منتجات متميزة وخدمة لا مثيل لها.
-                    </p>
-                </div>
-                <div class="bg-white p-10 rounded-3xl shadow-lg">
-                    <div class="text-5xl mb-6 text-blue-600">🚀</div>
-                    <h3 class="text-3xl font-bold text-gray-800 mb-4">مهمتنا</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        نلتزم بتوفير منتجات غذائية متنوعة من أفضل الموردين العالميين، مع ضمان أعلى معايير 
-                        الجودة والسلامة الغذائية، وتقديم خدمة توصيل سريعة وموثوقة لجميع عملائنا في قطاع المطاعم والفنادق.
-                    </p>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div class="bg-white p-10 rounded-3xl shadow-lg">
+            <div class="text-5xl mb-6 text-sky-400">🎯</div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">رؤيتنا</h3>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              أن نكون الشريك الأول والأوثق للمطاعم والفنادق في المملكة العربية
+              السعودية في توريد المنتجات الغذائية عالية الجودة، ونساهم في نجاح
+              أعمالهم من خلال تقديم منتجات متميزة وخدمة لا مثيل لها.
+            </p>
+          </div>
+          <div class="bg-white p-10 rounded-3xl shadow-lg">
+            <div class="text-5xl mb-6 text-sky-400">🚀</div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">مهمتنا</h3>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              نلتزم بتوفير منتجات غذائية متنوعة من أفضل الموردين العالميين، مع
+              ضمان أعلى معايير الجودة والسلامة الغذائية، وتقديم خدمة توصيل سريعة
+              وموثوقة لجميع عملائنا في قطاع المطاعم والفنادق.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Values -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">قيمنا</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="value-card text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
-                    <div class="text-5xl mb-4">✨</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">الجودة</h3>
-                    <p class="text-gray-600">نلتزم بأعلى معايير الجودة العالمية في كل ما نوفره</p>
-                </div>
-                <div class="value-card text-center p-8 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl">
-                    <div class="text-5xl mb-4">🤝</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">الثقة</h3>
-                    <p class="text-gray-600">نبني علاقات طويلة الأمد مع عملائنا قائمة على الثقة</p>
-                </div>
-                <div class="value-card text-center p-8 bg-gradient-to-br from-sky-50 to-sky-100 rounded-2xl">
-                    <div class="text-5xl mb-4">⚡</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">السرعة</h3>
-                    <p class="text-gray-600">نضمن توصيل سريع وفعال لجميع الطلبات</p>
-                </div>
-                <div class="value-card text-center p-8 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl">
-                    <div class="text-5xl mb-4">❤️</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">العملاء</h3>
-                    <p class="text-gray-600">نجاح عملائنا هو نجاحنا وأولويتنا القصوى</p>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-6">قيمنا</h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto"
+          ></div>
         </div>
+        <div class="grid md:grid-cols-4 gap-8">
+          <div
+            class="value-card text-center p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-sky-100"
+          >
+            <div class="text-5xl mb-4">✨</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">الجودة</h3>
+            <p class="text-gray-600">
+              نلتزم بأعلى معايير الجودة العالمية في كل ما نوفره
+            </p>
+          </div>
+          <div
+            class="value-card text-center p-8 bg-gradient-to-br from-sky-50 to-sky-100 rounded-2xl border-2 border-sky-200"
+          >
+            <div class="text-5xl mb-4">🤝</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">الثقة</h3>
+            <p class="text-gray-600">
+              نبني علاقات طويلة الأمد مع عملائنا قائمة على الثقة
+            </p>
+          </div>
+          <div
+            class="value-card text-center p-8 bg-gradient-to-br from-gray-50 to-sky-50 rounded-2xl border-2 border-gray-200"
+          >
+            <div class="text-5xl mb-4">⚡</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">السرعة</h3>
+            <p class="text-gray-600">نضمن توصيل سريع وفعال لجميع الطلبات</p>
+          </div>
+          <div
+            class="value-card text-center p-8 bg-gradient-to-br from-sky-50 to-gray-50 rounded-2xl border-2 border-sky-100"
+          >
+            <div class="text-5xl mb-4">❤️</div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">العملاء</h3>
+            <p class="text-gray-600">نجاح عملائنا هو نجاحنا وأولويتنا القصوى</p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Timeline -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">رحلتنا</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="timeline-item mb-16">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-blue-600 font-bold text-xl mb-2">2010</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">التأسيس</h3>
-                        <p class="text-gray-600">بدأنا رحلتنا كأحد موردي المنتجات الغذائية للمطاعم في المملكة</p>
-                    </div>
-                </div>
-                <div class="timeline-item mb-16">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-blue-600 font-bold text-xl mb-2">2015</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">التوسع العالمي</h3>
-                        <p class="text-gray-600">أصبحنا نستورد من أفضل الموردين في جميع أنحاء العالم</p>
-                    </div>
-                </div>
-                <div class="timeline-item mb-16">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-blue-600 font-bold text-xl mb-2">2020</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">الريادة</h3>
-                        <p class="text-gray-600">أصبحنا من أكبر موردي المطاعم والفنادق في المملكة</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg">
-                        <div class="text-blue-600 font-bold text-xl mb-2">2024</div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">التميز المستمر</h3>
-                        <p class="text-gray-600">نستمر في تطوير خدماتنا وتوسيع شبكة عملائنا في قطاع الضيافة</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-6">رحلتنا</h2>
+          <div
+            class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto"
+          ></div>
         </div>
+        <div class="max-w-3xl mx-auto">
+          <div class="timeline-item mb-16">
+            <div class="timeline-dot"></div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+              <div class="text-sky-400 font-bold text-xl mb-2">2010</div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">التأسيس</h3>
+              <p class="text-gray-600">
+                بدأنا رحلتنا كأحد موردي المنتجات الغذائية للمطاعم في المملكة
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item mb-16">
+            <div class="timeline-dot"></div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+              <div class="text-sky-400 font-bold text-xl mb-2">2015</div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                التوسع العالمي
+              </h3>
+              <p class="text-gray-600">
+                أصبحنا نستورد من أفضل الموردين في جميع أنحاء العالم
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item mb-16">
+            <div class="timeline-dot"></div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+              <div class="text-sky-400 font-bold text-xl mb-2">2020</div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">الريادة</h3>
+              <p class="text-gray-600">
+                أصبحنا من أكبر موردي المطاعم والفنادق في المملكة
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+              <div class="text-sky-400 font-bold text-xl mb-2">2024</div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                التميز المستمر
+              </h3>
+              <p class="text-gray-600">
+                نستمر في تطوير خدماتنا وتوسيع شبكة عملائنا في قطاع الضيافة
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Stats -->
-    <section class="py-20 bg-blue-600 text-white">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div>
-                    <div class="text-5xl font-bold mb-2">14+</div>
-                    <p class="text-xl">سنة من الخبرة</p>
-                </div>
-                <div>
-                    <div class="text-5xl font-bold mb-2">200+</div>
-                    <p class="text-xl">منتج متنوع</p>
-                </div>
-                <div>
-                    <div class="text-5xl font-bold mb-2">500+</div>
-                    <p class="text-xl">مطعم وفندق</p>
-                </div>
-                <div>
-                    <div class="text-5xl font-bold mb-2">30+</div>
-                    <p class="text-xl">دولة نستورد منها</p>
-                </div>
-            </div>
+    <section class="py-20 hero-gradient text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-5xl font-bold mb-2">14+</div>
+            <p class="text-xl">سنة من الخبرة</p>
+          </div>
+          <div>
+            <div class="text-5xl font-bold mb-2">200+</div>
+            <p class="text-xl">منتج متنوع</p>
+          </div>
+          <div>
+            <div class="text-5xl font-bold mb-2">500+</div>
+            <p class="text-xl">مطعم وفندق</p>
+          </div>
+          <div>
+            <div class="text-5xl font-bold mb-2">30+</div>
+            <p class="text-xl">دولة نستورد منها</p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
-                    <p class="text-gray-400">نقدم أفضل المنتجات الغذائية عالية الجودة في المملكة العربية السعودية</p>
-                </div>
-                <div>
-                    <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">الرئيسية</a></li>
-                        <li><a href="products.html" class="text-gray-400 hover:text-white">المنتجات</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">من نحن</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">تواصل معنا</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xl font-bold mb-4">الفئات</h4>
-                    <ul class="space-y-2">
-                        <li><a href="products.html#maona" class="text-gray-400 hover:text-white">منتجات معونة</a></li>
-                        <li><a href="products.html#makin" class="text-gray-400 hover:text-white">منتجات ماكين</a></li>
-                        <li><a href="products.html#atyab" class="text-gray-400 hover:text-white">منتجات أطياب</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
-                    <div class="flex space-x-reverse space-x-4 text-2xl">
-                        <a href="#" class="text-gray-400 hover:text-blue-500 transition"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
+            <p class="text-gray-400">
+              نقدم أفضل المنتجات الغذائية عالية الجودة في المملكة العربية
+              السعودية
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="index.html" class="text-gray-400 hover:text-white"
+                  >الرئيسية</a
+                >
+              </li>
+              <li>
+                <a href="products.html" class="text-gray-400 hover:text-white"
+                  >المنتجات</a
+                >
+              </li>
+              <li>
+                <a href="about.html" class="text-gray-400 hover:text-white"
+                  >من نحن</a
+                >
+              </li>
+              <li>
+                <a href="contact.html" class="text-gray-400 hover:text-white"
+                  >تواصل معنا</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">الفئات</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="products.html#maona"
+                  class="text-gray-400 hover:text-white"
+                  >منتجات معونة</a
+                >
+              </li>
+              <li>
+                <a
+                  href="products.html#makin"
+                  class="text-gray-400 hover:text-white"
+                  >منتجات ماكين</a
+                >
+              </li>
+              <li>
+                <a
+                  href="products.html#atyab"
+                  class="text-gray-400 hover:text-white"
+                  >منتجات أطياب</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
+            <div class="flex space-x-reverse space-x-4 text-2xl">
+              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
+                ><i class="fab fa-facebook"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-green-500 transition"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-sky-300 transition"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
+                ><i class="fab fa-twitter"></i
+              ></a>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق محفوظة.</p>
-            </div>
+          </div>
         </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <p>
+            &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق
+            محفوظة.
+          </p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
     </script>
-</body>
+  </body>
 </html>
