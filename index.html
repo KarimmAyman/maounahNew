@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>شركة معونة - الرئيسية</title>
+    <title>شركة معونة - موردون معتمدون لأفضل العلامات التجارية العالمية</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -19,21 +19,115 @@
       }
 
       .hero-gradient {
+        background: url("images/web 2.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      .hero-gradient::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: linear-gradient(
           135deg,
-          #4a5568 0%,
-          #5dade2 50%,
-          #85c1e9 100%
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.2) 100%
         );
       }
 
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .hero-gradient {
+          /* background: url("images/sizeBGM.jpg"); */
+          background-attachment: scroll;
+          background-size: cover;
+          background-position: center;
+          min-height: 100vh;
+        }
+      }
+
       .category-card {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .category-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(93, 173, 226, 0.05) 0%,
+          rgba(133, 193, 233, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .category-card:hover::before {
+        opacity: 1;
       }
 
       .category-card:hover {
-        transform: translateY(-12px);
-        box-shadow: 0 20px 40px rgba(93, 173, 226, 0.4);
+        transform: translateY(-20px) scale(1.03);
+        box-shadow: 0 30px 60px rgba(93, 173, 226, 0.35);
+      }
+
+      .logo-container {
+        position: relative;
+        width: 160px;
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @media (max-width: 768px) {
+        .logo-container {
+          width: 120px;
+          height: 120px;
+          padding: 15px;
+          border-radius: 20px;
+        }
+      }
+
+      .category-card:hover .logo-container {
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 15px 40px rgba(93, 173, 226, 0.25);
+        background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+      }
+
+      .product-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      }
+
+      .category-card:hover .product-logo {
+        filter: drop-shadow(0 8px 16px rgba(93, 173, 226, 0.3));
       }
 
       .float-animation {
@@ -74,30 +168,139 @@
         content: "";
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 3px;
         bottom: -5px;
         right: 0;
-        background: linear-gradient(90deg, #5dade2, #85c1e9);
+        background: linear-gradient(90deg, #667eea, #5dade2);
         transition: width 0.3s;
+        border-radius: 2px;
       }
 
       .nav-link:hover::after {
         width: 100%;
       }
 
-      /* تكبير اللوجو بدون تكبير الهيدر */
       .logo-large {
-        height: 120px;
-        width: 120px;
-        object-contain: contain;
-        transform: translateY(10px);
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
       }
 
       @media (max-width: 768px) {
         .logo-large {
-          height: 120px;
-          width: 120px;
-          transform: translateY(5px);
+          height: 80px;
+          width: 80px;
+        }
+      }
+
+      .feature-card {
+        transition: all 0.4s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .pulse-animation {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .social-icon {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-icon::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .social-icon:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-8px) scale(1.1);
+      }
+
+      .hero-logo-container {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto 2.5rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 32px;
+        padding: 35px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        animation: float 3s ease-in-out infinite;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-logo-container::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(14, 165, 233, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        animation: shine 3s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      .hero-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .hero-logo-container {
+          width: 160px;
+          height: 160px;
+          padding: 25px;
+          margin-bottom: 2rem;
+          border-radius: 24px;
         }
       }
     </style>
@@ -105,82 +308,86 @@
 
   <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
       <div class="container mx-auto px-4">
         <div
-          class="flex flex-col md:flex-row justify-between items-center py-2"
+          class="flex flex-col md:flex-row justify-between items-center py-3"
         >
-          <!-- Logo Center -->
           <div
-            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative"
+            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0"
           >
             <img
               src="logo.svg"
               alt="Logo"
-              class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300"
+              class="logo-large drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
           </div>
 
-          <!-- Navigation Links -->
           <div class="flex items-center w-full md:w-auto justify-center">
             <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
               <li>
-                <a href="index.html" class="nav-link text-sky-400 font-bold"
+                <a href="index.html" class="nav-link text-sky-500 font-bold"
                   >الرئيسية</a
                 >
               </li>
               <li>
                 <a
                   href="products.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >المنتجات</a
                 >
               </li>
               <li>
                 <a
                   href="about.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >من نحن</a
                 >
               </li>
               <li>
                 <a
                   href="contact.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >تواصل معنا</a
                 >
               </li>
             </ul>
           </div>
 
-          <!-- Mobile Button -->
           <button
             id="mobileMenuBtn"
-            class="md:hidden text-2xl text-gray-700 absolute left-4 top-5"
+            class="md:hidden text-2xl text-gray-700 absolute left-4 top-4 hover:text-sky-500 transition"
           >
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
         <ul class="py-4 px-4 space-y-3">
           <li>
-            <a href="index.html" class="block text-sky-400 font-bold py-2"
+            <a href="index.html" class="block text-sky-500 font-bold py-2"
               >الرئيسية</a
             >
           </li>
           <li>
-            <a href="products.html" class="block text-gray-700 py-2"
+            <a
+              href="products.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
               >المنتجات</a
             >
           </li>
           <li>
-            <a href="about.html" class="block text-gray-700 py-2">من نحن</a>
+            <a
+              href="about.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
+              >من نحن</a
+            >
           </li>
           <li>
-            <a href="contact.html" class="block text-gray-700 py-2"
+            <a
+              href="contact.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
               >تواصل معنا</a
             >
           </li>
@@ -189,113 +396,291 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient pt-48 pb-20 mt-12 md:mt-16">
-      <div class="container mx-auto px-4">
+    <section class="hero-gradient pt-48 pb-32 mt-24 md:mt-28 flex items-center">
+      <div class="container mx-auto px-4 hero-content">
         <div class="text-center text-white fade-in">
-          <h1 class="text-5xl md:text-7xl font-bold mb-6">شركة معونة</h1>
-          <p class="text-xl md:text-2xl mb-8 opacity-90">
-            احد اكبر الموردين من جميع دول العالم لمنتجات المطاعم والفنادق
+          <div class="hero-logo-container">
+            <img src="logo.svg" alt="معونة" class="hero-logo" />
+          </div>
+          <h1 class="text-4xl md:text-8xl font-black mb-8 leading-tight">
+            شركة <span class="text-sky-300">معونة</span> التجارية
+          </h1>
+          <p
+            class="text-xl md:text-3xl mb-12 opacity-95 max-w-4xl mx-auto font-medium leading-relaxed"
+          >
+            شريكك الموثوق في توريد أفضل المنتجات الغذائية العالمية للمطاعم
+            والفنادق والمؤسسات
           </p>
-          <div class="flex justify-center gap-4 flex-wrap">
+          <div class="flex justify-center gap-6 flex-wrap">
             <a
               href="products.html"
-              class="bg-white text-gray-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105"
+              class="bg-white text-gray-900 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition transform hover:scale-105 shadow-2xl flex items-center gap-3"
             >
-              منتجاتنا بين يديك
+              <span>منتجاتنا بين يديك</span>
+              <i class="fas fa-arrow-left"></i>
             </a>
             <a
               href="contact.html"
-              class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-800 transition transform hover:scale-105"
+              class="bg-transparent border-3 border-white text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white hover:text-gray-900 transition transform hover:scale-105 backdrop-blur-sm"
             >
-              تواصل معنا
+              تواصل معنا الآن
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="py-20 bg-white">
+    <!-- Products Section -->
+    <section class="py-28 bg-gradient-to-b from-white via-sky-50/30 to-gray-50">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            فئات منتجاتنا
+        <div class="text-center mb-24 fade-in">
+          <div class="inline-block mb-6">
+            <span
+              class="text-sky-500 font-bold text-sm tracking-[0.3em] uppercase"
+              >Premium Brands</span
+            >
+          </div>
+          <h2
+            class="text-5xl md:text-7xl font-black text-gray-900 mb-8 leading-tight"
+          >
+            علاماتنا
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-500 to-sky-600"
+              >التجارية</span
+            >
           </h2>
-          <p class="text-xl text-gray-600">
-            اختر من بين مجموعتنا المتنوعة من المنتجات عالية الجودة
+          <p
+            class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
+          >
+            نوفر لك أفضل وأشهر العلامات التجارية العالمية والمحلية بأعلى معايير
+            الجودة
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- منتجات معونة -->
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 max-w-7xl mx-auto"
+        >
+          <!-- ماما صوص -->
           <div
-            class="category-card bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 shadow-lg cursor-pointer border-2 border-sky-100"
-            onclick="location.href='products.html#maona'"
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#mamasauce'"
           >
-            <div class="text-6xl mb-6 float-animation">
-              <img
-                src="logo.svg"
-                alt="Logo"
-                class="w-20 drop-shadow-lg hover:scale-105 transition-transform duration-300"
-              />
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
             </div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">منتجات معونة</h3>
-            <p class="text-gray-600 text-lg mb-6">
-              منتجات غذائية متنوعة لتلبية احتياجاتك اليومية بأعلى معايير الجودة
-            </p>
-            <div class="flex items-center text-sky-400 font-bold text-lg">
-              <span>اكتشف المزيد</span>
-              <i class="fas fa-arrow-left mr-2"></i>
+            <div class="float-animation">
+              <div class="logo-container">
+                <img
+                  src="images/mamaSouce.jpg"
+                  alt="ماما صوص"
+                  class="product-logo"
+                />
+              </div>
             </div>
           </div>
 
-          <!-- منتجات ماكين -->
+          <!-- معونه -->
           <div
-            class="category-card bg-gradient-to-br from-sky-50 to-sky-100 rounded-3xl p-8 shadow-lg cursor-pointer border-2 border-sky-200"
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#maona'"
+          >
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
+            </div>
+            <div class="float-animation" style="animation-delay: 0.1s">
+              <div class="logo-container">
+                <img src="logo.svg" alt="معونه" class="product-logo" />
+              </div>
+            </div>
+          </div>
+
+          <!-- ماكين -->
+          <div
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
             onclick="location.href='products.html#makin'"
           >
             <div
-              class="text-6xl mb-6 float-animation"
-              style="animation-delay: 0.2s"
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
             >
-              <img
-                src="images/McCain Foods _idCBGsyJRN_0.svg"
-                alt="Logo"
-                class="w-20 drop-shadow-lg hover:scale-105 transition-transform duration-300"
-              />
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
             </div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">منتجات ماكين</h3>
-            <p class="text-gray-600 text-lg mb-6">
-              دجاج طازج ومقرمش، محضر بأفضل التوابل والنكهات المميزة
-            </p>
-            <div class="flex items-center text-sky-400 font-bold text-lg">
-              <span>اكتشف المزيد</span>
-              <i class="fas fa-arrow-left mr-2"></i>
+            <div class="float-animation" style="animation-delay: 0.2s">
+              <div class="logo-container">
+                <img
+                  src="images/McCain Foods _idCBGsyJRN_0.svg"
+                  alt="ماكين"
+                  class="product-logo"
+                />
+              </div>
             </div>
           </div>
 
-          <!-- منتجات أطياب -->
+          <!-- تب توب -->
           <div
-            class="category-card bg-gradient-to-br from-gray-50 to-sky-50 rounded-3xl p-8 shadow-lg cursor-pointer border-2 border-gray-200"
-            onclick="location.href='products.html#atyab'"
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#tiptop'"
           >
             <div
-              class="text-6xl mb-6 float-animation"
-              style="animation-delay: 0.4s"
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
             >
-              <img
-                src="images/pngtree-chicken-company-logo-vector-template-design-illustration-png-image_9162815.png"
-                alt="Logo"
-                class="w-20 drop-shadow-lg hover:scale-105 transition-transform duration-300"
-              />
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
             </div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">منتجات أطياب</h3>
-            <p class="text-gray-600 text-lg mb-6">
-              نكهات أصيلة ومميزة تجمع بين التقاليد والجودة العالية
-            </p>
-            <div class="flex items-center text-sky-400 font-bold text-lg">
-              <span>اكتشف المزيد</span>
-              <i class="fas fa-arrow-left mr-2"></i>
+            <div class="float-animation" style="animation-delay: 0.3s">
+              <div class="logo-container">
+                <img
+                  src="images/tiptop.jpg"
+                  alt="تب توب"
+                  class="product-logo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- لتوسا -->
+          <div
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#lutosa'"
+          >
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
+            </div>
+            <div class="float-animation" style="animation-delay: 0.4s">
+              <div class="logo-container">
+                <img src="images/lutosa.jpg" alt="لتوسا" class="product-logo" />
+              </div>
+            </div>
+          </div>
+
+          <!-- كرنكل رووك -->
+          <div
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#crinkle'"
+          >
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
+            </div>
+            <div class="float-animation" style="animation-delay: 0.5s">
+              <div class="logo-container">
+                <img
+                  src="images/CRRROCK.jpg"
+                  alt="كرنكل رووك"
+                  class="product-logo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- كافنديش -->
+          <div
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#cavendish'"
+          >
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
+            </div>
+            <div class="float-animation" style="animation-delay: 0.7s">
+              <div class="logo-container">
+                <img
+                  src="images/Cavendish.jpg"
+                  alt="كافنديش"
+                  class="product-logo"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- جوردينا -->
+          <div
+            class="category-card bg-white/80 rounded-3xl md:rounded-[32px] p-8 md:p-12 shadow-2xl cursor-pointer border-2 border-gray-100/50 flex flex-col items-center justify-center group relative hover:border-sky-200"
+            onclick="location.href='products.html#jordina'"
+          >
+            <div
+              class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300"
+            >
+              <span
+                class="bg-sky-500 text-white text-[10px] px-2 py-1 rounded-full font-bold shadow-md"
+                >→</span
+              >
+            </div>
+            <div class="float-animation" style="animation-delay: 0.8s">
+              <div class="logo-container">
+                <img
+                  src="images/jordina.webp"
+                  alt="جوردينا"
+                  class="product-logo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="mt-24 grid grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
+          <div
+            class="text-center p-4 md:p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100"
+          >
+            <div
+              class="text-3xl md:text-5xl font-black bg-gradient-to-r from-sky-400 to-sky-600 bg-clip-text text-transparent mb-2 md:mb-3"
+            >
+              8+
+            </div>
+            <div class="text-gray-700 font-bold text-sm md:text-lg">
+              علامة تجارية
+            </div>
+          </div>
+          <div
+            class="text-center p-4 md:p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100"
+          >
+            <div
+              class="text-3xl md:text-5xl font-black bg-gradient-to-r from-sky-400 to-sky-600 bg-clip-text text-transparent mb-2 md:mb-3"
+            >
+              100%
+            </div>
+            <div class="text-gray-700 font-bold text-sm md:text-lg">
+              جودة مضمونة
+            </div>
+          </div>
+          <div
+            class="text-center p-4 md:p-8 bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100"
+          >
+            <div
+              class="text-3xl md:text-5xl font-black bg-gradient-to-r from-sky-400 to-sky-600 bg-clip-text text-transparent mb-2 md:mb-3"
+            >
+              15+
+            </div>
+            <div class="text-gray-700 font-bold text-sm md:text-lg">
+              سنة خبرة
             </div>
           </div>
         </div>
@@ -303,137 +688,265 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-24 bg-gradient-to-b from-gray-50 to-white">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            لماذا نحن؟
+        <div class="text-center mb-20">
+          <div class="inline-block mb-6">
+            <span
+              class="text-sky-500 font-bold text-sm tracking-[0.3em] uppercase"
+              >Why Choose Us</span
+            >
+          </div>
+          <h2 class="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+            لماذا
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600"
+              >معونة</span
+            >؟
           </h2>
-          <p class="text-xl text-gray-600">
-            نلتزم بتقديم أفضل المنتجات والخدمات
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            نلتزم بتقديم أعلى معايير الجودة والخدمة لعملائنا
           </p>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-8">
+        <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           <div
-            class="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition"
+            class="feature-card text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl border-2 border-gray-100"
           >
-            <div class="text-5xl mb-4 text-sky-400">✓</div>
-            <h3 class="text-2xl font-bold mb-3 text-gray-800">جودة عالية</h3>
-            <p class="text-gray-600">نختار أفضل المكونات لضمان جودة منتجاتنا</p>
-          </div>
-
-          <div
-            class="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition"
-          >
-            <div class="text-5xl mb-4 text-sky-400">🚚</div>
-            <h3 class="text-2xl font-bold mb-3 text-gray-800">توصيل سريع</h3>
-            <p class="text-gray-600">
-              خدمة توصيل سريعة وآمنة لجميع مناطق المملكة
+            <div class="text-6xl mb-6">
+              <div
+                class="inline-block p-5 bg-gradient-to-br from-sky-100 to-sky-200 rounded-2xl"
+              >
+                <i class="fas fa-certificate text-sky-500"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">جودة عالمية</h3>
+            <p class="text-gray-600 leading-relaxed">
+              منتجات مستوردة من أفضل المصانع العالمية بشهادات جودة معتمدة
             </p>
           </div>
 
           <div
-            class="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition"
+            class="feature-card text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl border-2 border-gray-100"
           >
-            <div class="text-5xl mb-4 text-sky-400">💰</div>
-            <h3 class="text-2xl font-bold mb-3 text-gray-800">أسعار تنافسية</h3>
-            <p class="text-gray-600">أفضل الأسعار مع ضمان الجودة العالية</p>
+            <div class="text-6xl mb-6">
+              <div
+                class="inline-block p-5 bg-gradient-to-br from-green-100 to-green-200 rounded-2xl"
+              >
+                <i class="fas fa-shipping-fast text-green-500"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">توصيل موثوق</h3>
+            <p class="text-gray-600 leading-relaxed">
+              شبكة توزيع واسعة تغطي جميع مناطق المملكة بأسرع وقت
+            </p>
           </div>
 
           <div
-            class="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition"
+            class="feature-card text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl border-2 border-gray-100"
           >
-            <div class="text-5xl mb-4 text-sky-400">🏆</div>
-            <h3 class="text-2xl font-bold mb-3 text-gray-800">خبرة طويلة</h3>
-            <p class="text-gray-600">سنوات من الخبرة في مجال الأغذية</p>
+            <div class="text-6xl mb-6">
+              <div
+                class="inline-block p-5 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl"
+              >
+                <i class="fas fa-hand-holding-usd text-amber-500"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">أسعار منافسة</h3>
+            <p class="text-gray-600 leading-relaxed">
+              أفضل الأسعار في السوق مع عروض خاصة للكميات الكبيرة
+            </p>
+          </div>
+
+          <div
+            class="feature-card text-center p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl border-2 border-gray-100"
+          >
+            <div class="text-6xl mb-6">
+              <div
+                class="inline-block p-5 bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl"
+              >
+                <i class="fas fa-headset text-purple-500"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-800">دعم مستمر</h3>
+            <p class="text-gray-600 leading-relaxed">
+              فريق خدمة عملاء محترف متاح على مدار الساعة لخدمتك
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="py-24 bg-gradient-to-br from-sky-500 to-sky-600 relative overflow-hidden"
+    >
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"
+        ></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center text-white max-w-4xl mx-auto">
+          <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+            هل أنت مستعد لبدء الشراكة معنا؟
+          </h2>
+          <p class="text-xl md:text-2xl mb-10 opacity-95 leading-relaxed">
+            انضم إلى مئات العملاء الراضين واحصل على أفضل المنتجات بأفضل الأسعار
+          </p>
+          <div class="flex justify-center gap-6 flex-wrap">
+            <a
+              href="contact.html"
+              class="bg-white text-sky-600 px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition transform hover:scale-105 shadow-2xl inline-flex items-center gap-3"
+            >
+              <i class="fas fa-phone-alt"></i>
+              <span>تواصل معنا الآن</span>
+            </a>
+            <a
+              href="products.html"
+              class="bg-transparent border-3 border-white text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-white/10 transition transform hover:scale-105 backdrop-blur-sm inline-flex items-center gap-3"
+            >
+              <i class="fas fa-shopping-cart"></i>
+              <span>تصفح المنتجات</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer
+      class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12"
+    >
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
-            <p class="text-gray-400">
-              نقدم أفضل المنتجات الغذائية عالية الجودة في المملكة العربية
-              السعودية
+            <img
+              src="logo.svg"
+              alt="شركة معونة"
+              class="w-24 mb-4 brightness-0 invert drop-shadow-lg"
+            />
+            <h1 class="text-xl md:text-xl font-black mb-8 leading-tight">
+              شركة <span class="text-sky-300">معونة</span> التجارية
+            </h1>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              الشريك الموثوق في توريد أفضل المنتجات الغذائية العالمية بأعلى
+              معايير الجودة
             </p>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-link text-sky-400 text-sm"></i>
+              روابط سريعة
+            </h4>
             <ul class="space-y-2">
               <li>
-                <a href="index.html" class="text-gray-400 hover:text-white"
-                  >الرئيسية</a
+                <a
+                  href="index.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>الرئيسية</span></a
                 >
               </li>
               <li>
-                <a href="products.html" class="text-gray-400 hover:text-white"
-                  >المنتجات</a
+                <a
+                  href="products.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>المنتجات</span></a
                 >
               </li>
               <li>
-                <a href="about.html" class="text-gray-400 hover:text-white"
-                  >من نحن</a
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>من نحن</span></a
                 >
               </li>
               <li>
-                <a href="contact.html" class="text-gray-400 hover:text-white"
-                  >تواصل معنا</a
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>تواصل معنا</span></a
                 >
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">الفئات</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="products.html#maona"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات معونة</a
-                >
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-clock text-sky-400 text-sm"></i>
+              أوقات العمل
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-calendar-check text-green-500 text-xs"></i>
+                <span>السبت - الخميس</span>
               </li>
-              <li>
-                <a
-                  href="products.html#makin"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات ماكين</a
-                >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-clock text-sky-400 text-xs"></i>
+                <span>٧:٣٠ ص - ٥:٣٠ م</span>
               </li>
-              <li>
-                <a
-                  href="products.html#atyab"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات أطياب</a
-                >
+              <li class="flex items-center gap-2 text-red-400">
+                <i class="fas fa-calendar-times text-xs"></i>
+                <span>مغلق: الجمعة</span>
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
-            <div class="flex space-x-reverse space-x-4 text-2xl">
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-facebook"></i
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-share-alt text-sky-400 text-sm"></i>
+              تابعنا
+            </h4>
+            <div class="flex space-x-reverse space-x-3 text-xl mb-4">
+              <a
+                href="https://snapchat.com/add/maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-yellow-400 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 social-icon relative"
+              >
+                <i class="fab fa-snapchat-ghost relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-green-500 transition"
-                ><i class="fab fa-whatsapp"></i
+              <a
+                href="https://tiktok.com/@maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-white transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black social-icon relative"
+              >
+                <i class="fab fa-tiktok relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition"
-                ><i class="fab fa-instagram"></i
+              <a
+                href="https://wa.me/966533251666"
+                target="_blank"
+                class="text-gray-400 hover:text-green-500 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 social-icon relative"
+              >
+                <i class="fab fa-whatsapp relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-twitter"></i
-              ></a>
+            </div>
+            <div class="space-y-2 text-gray-400 text-sm">
+              <p class="flex items-center gap-2">
+                <i class="fas fa-phone text-sky-400 text-xs"></i>
+                <span dir="ltr">+966 53 325 1666</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="fas fa-envelope text-sky-400 text-xs"></i>
+                <span class="text-xs break-all">maonah.co.ksa@gmail.com</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>
+
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-gray-400 text-sm">
             &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق
             محفوظة.
           </p>
@@ -446,9 +959,11 @@
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mobileMenu = document.getElementById("mobileMenu");
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
 
       // Scroll animations
       const observerOptions = {
@@ -465,8 +980,22 @@
       }, observerOptions);
 
       document
-        .querySelectorAll(".category-card")
+        .querySelectorAll(".category-card, .feature-card")
         .forEach((el) => observer.observe(el));
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
     </script>
   </body>
 </html>

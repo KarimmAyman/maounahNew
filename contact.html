@@ -6,7 +6,7 @@
     <title>تواصل معنا - شركة معونة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -19,21 +19,67 @@
       }
 
       .hero-gradient {
-        background: linear-gradient(
-          135deg,
-          #4a5568 0%,
-          #5dade2 50%,
-          #85c1e9 100%
-        );
+        background: linear-gradient(135deg, #667eea 0%, #5dade2 50%, #85c1e9 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-gradient::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: moveBackground 20s linear infinite;
+      }
+
+      @keyframes moveBackground {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
       }
 
       .contact-card {
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent;
+      }
+
+      .contact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(93, 173, 226, 0.05) 0%, rgba(133, 193, 233, 0.05) 100%);
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: 0;
+      }
+
+      .contact-card:hover::before {
+        opacity: 1;
       }
 
       .contact-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(93, 173, 226, 0.3);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(93, 173, 226, 0.3);
+        border-color: rgba(93, 173, 226, 0.4);
+      }
+
+      .icon-circle {
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        box-shadow: 0 8px 20px rgba(93, 173, 226, 0.3);
+        transition: all 0.3s;
+      }
+
+      .contact-card:hover .icon-circle {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 12px 30px rgba(93, 173, 226, 0.5);
       }
 
       .nav-link {
@@ -45,11 +91,12 @@
         content: "";
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 3px;
         bottom: -5px;
         right: 0;
-        background: linear-gradient(90deg, #5dade2, #85c1e9);
+        background: linear-gradient(90deg, #667eea, #5dade2);
         transition: width 0.3s;
+        border-radius: 2px;
       }
 
       .nav-link:hover::after {
@@ -57,36 +104,159 @@
       }
 
       .logo-large {
-        height: 120px;
-        width: 120px;
+        height: 100px;
+        width: 100px;
         object-fit: contain;
-        transform: translateY(10px);
       }
 
       @media (max-width: 768px) {
         .logo-large {
-          height: 120px;
-          width: 120px;
-          transform: translateY(5px);
+          height: 80px;
+          width: 80px;
         }
+      }
+
+      .social-icon {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-icon::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .social-icon:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-8px) scale(1.1);
+        box-shadow: 0 15px 35px rgba(93, 173, 226, 0.4);
+      }
+
+      .info-badge {
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 12px rgba(93, 173, 226, 0.25);
+        transition: all 0.3s;
+      }
+
+      .info-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(93, 173, 226, 0.35);
+      }
+
+      .map-container {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        border: 3px solid rgba(93, 173, 226, 0.2);
+        transition: all 0.4s;
+      }
+
+      .map-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 60px rgba(93, 173, 226, 0.3);
+        border-color: rgba(93, 173, 226, 0.4);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 1000;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .whatsapp-button {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #25D366, #128C7E);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-button i {
+        color: white;
+        font-size: 35px;
+      }
+
+      .divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #5dade2, transparent);
+        margin: 24px 0;
       }
     </style>
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
       <div class="container mx-auto px-4">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center py-2"
-        >
+        <div class="flex flex-col md:flex-row justify-between items-center py-3">
           <!-- Logo Center -->
-          <div
-            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative"
-          >
+          <div class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0">
             <img
               src="logo.svg"
               alt="Logo"
-              class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300"
+              class="logo-large drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
           </div>
 
@@ -94,39 +264,22 @@
           <div class="flex items-center w-full md:w-auto justify-center">
             <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
               <li>
-                <a
-                  href="index.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
-                  >الرئيسية</a
-                >
+                <a href="index.html" class="nav-link text-gray-700 hover:text-sky-500 font-semibold">الرئيسية</a>
               </li>
               <li>
-                <a
-                  href="products.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
-                  >المنتجات</a
-                >
+                <a href="products.html" class="nav-link text-gray-700 hover:text-sky-500 font-semibold">المنتجات</a>
               </li>
               <li>
-                <a
-                  href="about.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
-                  >من نحن</a
-                >
+                <a href="about.html" class="nav-link text-gray-700 hover:text-sky-500 font-semibold">من نحن</a>
               </li>
               <li>
-                <a href="contact.html" class="nav-link text-sky-400 font-bold"
-                  >تواصل معنا</a
-                >
+                <a href="contact.html" class="nav-link text-sky-500 font-bold">تواصل معنا</a>
               </li>
             </ul>
           </div>
 
           <!-- Mobile Button -->
-          <button
-            id="mobileMenuBtn"
-            class="md:hidden text-2xl text-gray-700 absolute left-4 top-5"
-          >
+          <button id="mobileMenuBtn" class="md:hidden text-2xl text-gray-700 absolute left-4 top-4 hover:text-sky-500 transition">
             <i class="fas fa-bars"></i>
           </button>
         </div>
@@ -135,259 +288,339 @@
       <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
         <ul class="py-4 px-4 space-y-3">
-          <li>
-            <a href="index.html" class="block text-gray-700 py-2">الرئيسية</a>
-          </li>
-          <li>
-            <a href="products.html" class="block text-gray-700 py-2"
-              >المنتجات</a
-            >
-          </li>
-          <li>
-            <a href="about.html" class="block text-gray-700 py-2">من نحن</a>
-          </li>
-          <li>
-            <a href="contact.html" class="block text-sky-400 font-bold py-2"
-              >تواصل معنا</a
-            >
-          </li>
+          <li><a href="index.html" class="block text-gray-700 py-2 hover:text-sky-500 font-semibold">الرئيسية</a></li>
+          <li><a href="products.html" class="block text-gray-700 py-2 hover:text-sky-500 font-semibold">المنتجات</a></li>
+          <li><a href="about.html" class="block text-gray-700 py-2 hover:text-sky-500 font-semibold">من نحن</a></li>
+          <li><a href="contact.html" class="block text-sky-500 font-bold py-2">تواصل معنا</a></li>
         </ul>
       </div>
     </nav>
 
     <!-- Page Header -->
-    <section class="hero-gradient text-white py-20 mt-32 md:mt-36">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl font-bold mb-4">تواصل معنا</h1>
-        <p class="text-xl">
-          نحن هنا للإجابة على استفساراتك وخدمتك على مدار الساعة
+    <section class="hero-gradient text-white py-16 mt-24 md:mt-28 relative">
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="inline-block mb-6">
+          <span class="bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold tracking-wider border border-white/30">
+            نحن هنا لخدمتك
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black mb-3 leading-tight">تواصل معنا</h1>
+        <p class="text-lg md:text-xl opacity-95 max-w-2xl mx-auto">
+          نسعد بالرد على استفساراتك وخدمتك في أي وقت
         </p>
       </div>
     </section>
 
     <!-- Contact Info Cards -->
-    <section class="py-20 bg-white">
+    <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-8 mb-16">
-          <div
-            class="contact-card bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl text-center shadow-lg border-2 border-sky-100"
-          >
-            <div
-              class="w-20 h-20 bg-gradient-to-br from-sky-400 to-sky-500 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6"
-            >
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <!-- Phone Card -->
+          <div class="contact-card glass-effect p-8 rounded-3xl text-center shadow-lg fade-in">
+            <div class="icon-circle w-20 h-20 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
               <i class="fas fa-phone-alt"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">الهاتف</h3>
-            <p class="text-gray-600 text-lg mb-2" dir="ltr">+966 11 234 5678</p>
-            <p class="text-gray-600 text-lg" dir="ltr">+966 50 123 4567</p>
-            <p class="text-sm text-gray-500 mt-3">
-              الأحد - الخميس: 9 صباحاً - 6 مساءً
-            </p>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">الهاتف والواتساب</h3>
+            <div class="space-y-3">
+              <a href="tel:+966533251666" class="info-badge block hover:scale-105 transition">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span dir="ltr">+966 53 325 1666</span>
+              </a>
+            </div>
+            <div class="divider"></div>
+            <div class="text-sm text-gray-600 space-y-1">
+              <p class="flex items-center justify-center gap-2">
+                <i class="fas fa-clock text-sky-500"></i>
+                <span class="font-bold">أوقات العمل:</span>
+              </p>
+              <p>٧:٣٠ صباحاً - ٥:٣٠ مساءً</p>
+              <p class="text-xs text-gray-500">السبت - الخميس</p>
+            </div>
           </div>
 
-          <div
-            class="contact-card bg-gradient-to-br from-sky-50 to-sky-100 p-8 rounded-3xl text-center shadow-lg border-2 border-sky-200"
-          >
-            <div
-              class="w-20 h-20 bg-gradient-to-br from-sky-400 to-sky-500 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6"
-            >
+          <!-- Email Card -->
+          <div class="contact-card glass-effect p-8 rounded-3xl text-center shadow-lg fade-in" style="animation-delay: 0.1s">
+            <div class="icon-circle w-20 h-20 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
               <i class="fas fa-envelope"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">
-              البريد الإلكتروني
-            </h3>
-            <p class="text-gray-600 text-lg mb-2" dir="ltr">info@maona.sa</p>
-            <p class="text-gray-600 text-lg" dir="ltr">sales@maona.sa</p>
-            <p class="text-sm text-gray-500 mt-3">سنرد عليك خلال 24 ساعة</p>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">البريد الإلكتروني</h3>
+            <div class="space-y-3">
+              <a href="mailto:maonah.co.ksa@gmail.com" class="info-badge block hover:scale-105 transition">
+                <i class="fas fa-envelope text-xl"></i>
+                <span dir="ltr" class="text-sm">maonah.co.ksa@gmail.com</span>
+              </a>
+            </div>
+            <div class="divider"></div>
+            <div class="text-sm text-gray-600">
+              <p class="flex items-center justify-center gap-2 mb-2">
+                <i class="fas fa-reply text-sky-500"></i>
+                <span class="font-bold">وقت الرد:</span>
+              </p>
+              <p>نرد عليك خلال 24 ساعة</p>
+              <p class="text-xs text-gray-500 mt-1">في أيام العمل الرسمية</p>
+            </div>
           </div>
 
-          <div
-            class="contact-card bg-gradient-to-br from-gray-50 to-sky-50 p-8 rounded-3xl text-center shadow-lg border-2 border-gray-200"
-          >
-            <div
-              class="w-20 h-20 bg-gradient-to-br from-sky-400 to-sky-500 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6"
-            >
+          <!-- Location Card -->
+          <div class="contact-card glass-effect p-8 rounded-3xl text-center shadow-lg fade-in" style="animation-delay: 0.2s">
+            <div class="icon-circle w-20 h-20 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
               <i class="fas fa-map-marker-alt"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">العنوان</h3>
-            <p class="text-gray-600 text-lg mb-2">
-              الرياض، المملكة العربية السعودية
-            </p>
-            <p class="text-gray-600 text-lg">
-              حي الملك فهد، طريق الملك عبدالله
-            </p>
-            <p class="text-sm text-gray-500 mt-3">زورنا في مقرنا الرئيسي</p>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">العنوان</h3>
+            <div class="space-y-3">
+              <div class="info-badge block">
+                <i class="fas fa-city text-xl"></i>
+                <span>الرياض</span>
+              </div>
+              <div class="text-gray-700 text-base leading-relaxed">
+                <p class="font-bold">حي العزيزية</p>
+                <p>شارع يحيى معصوم</p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="text-sm text-gray-600">
+              <p class="flex items-center justify-center gap-2">
+                <i class="fas fa-building text-sky-500"></i>
+                <span>المقر الرئيسي</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Social Media Section -->
-    <section class="py-20 hero-gradient text-white">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">
-          تابعنا على وسائل التواصل الاجتماعي
-        </h2>
-        <p class="text-xl mb-10 opacity-90">
-          ابق على اطلاع بآخر أخبارنا ومنتجاتنا
-        </p>
-        <div class="flex justify-center gap-6 flex-wrap">
+    <section class="py-16 bg-white/50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12 fade-in">
+          <div class="inline-block mb-4">
+            <span class="text-sky-500 font-bold text-sm tracking-[0.3em] uppercase">Follow Us</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+            تابعنا على <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600">وسائل التواصل</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            ابق على اطلاع بآخر أخبارنا ومنتجاتنا وعروضنا الحصرية
+          </p>
+        </div>
+
+        <div class="flex justify-center gap-6 flex-wrap max-w-2xl mx-auto">
+          <!-- Snapchat -->
           <a
-            href="#"
-            class="w-16 h-16 bg-white text-sky-500 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
+            href="https://snapchat.com/add/maonahcompany"
+            target="_blank"
+            class="social-icon w-24 h-24 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-3xl flex flex-col items-center justify-center text-white shadow-xl relative"
           >
-            <i class="fab fa-facebook"></i>
+            <i class="fab fa-snapchat-ghost text-4xl mb-1 relative z-10"></i>
+            <span class="text-xs font-bold relative z-10">Snapchat</span>
           </a>
+
+          <!-- TikTok -->
           <a
-            href="#"
-            class="w-16 h-16 bg-white text-green-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
+            href="https://tiktok.com/@maonahcompany"
+            target="_blank"
+            class="social-icon w-24 h-24 bg-gradient-to-br from-black to-gray-800 rounded-3xl flex flex-col items-center justify-center text-white shadow-xl relative"
           >
-            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-tiktok text-4xl mb-1 relative z-10"></i>
+            <span class="text-xs font-bold relative z-10">TikTok</span>
           </a>
+
+          <!-- WhatsApp -->
           <a
-            href="#"
-            class="w-16 h-16 bg-white text-sky-400 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
+            href="https://wa.me/966533251666"
+            target="_blank"
+            class="social-icon w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-3xl flex flex-col items-center justify-center text-white shadow-xl relative"
           >
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-whatsapp text-4xl mb-1 relative z-10"></i>
+            <span class="text-xs font-bold relative z-10">WhatsApp</span>
           </a>
-          <a
-            href="#"
-            class="w-16 h-16 bg-white text-sky-500 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a
-            href="#"
-            class="w-16 h-16 bg-white text-red-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
-          >
-            <i class="fab fa-youtube"></i>
-          </a>
-          <a
-            href="#"
-            class="w-16 h-16 bg-white text-sky-600 rounded-full flex items-center justify-center text-2xl hover:bg-gray-100 transition transform hover:scale-110 shadow-lg"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
+        </div>
+
+        <!-- Username Display -->
+        <div class="text-center mt-8">
+          <div class="inline-flex items-center gap-3 bg-gradient-to-r from-sky-50 to-blue-50 px-8 py-4 rounded-full border-2 border-sky-200 shadow-lg">
+            <i class="fas fa-at text-sky-500 text-xl"></i>
+            <span class="font-bold text-gray-800 text-lg" dir="ltr">maonahcompany</span>
+            <i class="fas fa-check-circle text-green-500"></i>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Map Section -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-gray-800 mb-4">موقعنا</h2>
+        <div class="text-center mb-12 fade-in">
+          <div class="inline-block mb-4">
+            <span class="text-sky-500 font-bold text-sm tracking-[0.3em] uppercase">Find Us</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">موقعنا</h2>
           <p class="text-xl text-gray-600">زورنا في مقرنا الرئيسي بالرياض</p>
         </div>
-        <div class="max-w-6xl mx-auto">
-          <div
-            class="bg-gradient-to-br from-gray-100 to-sky-50 rounded-3xl overflow-hidden shadow-2xl border-2 border-sky-100"
-            style="height: 400px"
-          >
-            <div
-              class="w-full h-full flex items-center justify-center text-gray-500"
-            >
-              <div class="text-center">
-                <i class="fas fa-map-marked-alt text-6xl mb-4 text-sky-400"></i>
-                <p class="text-xl font-bold text-gray-800">خريطة الموقع</p>
-                <p class="text-gray-600 mt-2">
-                  الرياض - حي الملك فهد - طريق الملك عبدالله
-                </p>
-              </div>
+        
+        <div class="max-w-5xl mx-auto">
+          <div class="map-container" style="height: 450px">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.9444598284436!2d46.71743!3d24.70556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzIwLjAiTiA0NsKwNDMnMDIuNyJF!5e0!3m2!1sar!2ssa!4v1234567890"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          
+          <!-- Location Info Below Map -->
+          <div class="mt-6 grid md:grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-2xl shadow-lg text-center border-2 border-sky-100">
+              <i class="fas fa-map-marked-alt text-3xl text-sky-500 mb-2"></i>
+              <p class="font-bold text-gray-800">حي العزيزية</p>
+              <p class="text-sm text-gray-600">شارع يحيى معصوم</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-lg text-center border-2 border-sky-100">
+              <i class="fas fa-city text-3xl text-sky-500 mb-2"></i>
+              <p class="font-bold text-gray-800">الرياض</p>
+              <p class="text-sm text-gray-600">المملكة العربية السعودية</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-lg text-center border-2 border-sky-100">
+              <i class="fas fa-directions text-3xl text-sky-500 mb-2"></i>
+              <a href="https://maps.google.com/?q=الرياض+حي+العزيزية+شارع+يحيى+معصوم" target="_blank" class="font-bold text-sky-600 hover:text-sky-700">
+                احصل على الاتجاهات
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-5xl font-black mb-6 leading-tight">
+            لديك استفسار؟ نحن هنا للمساعدة!
+          </h2>
+          <p class="text-lg md:text-xl mb-10 opacity-95 leading-relaxed">
+            فريقنا جاهز للرد على جميع أسئلتك وتقديم أفضل الحلول لاحتياجاتك
+          </p>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a
+              href="https://wa.me/966533251666"
+              target="_blank"
+              class="bg-white text-sky-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-2xl inline-flex items-center gap-3"
+            >
+              <i class="fab fa-whatsapp text-2xl"></i>
+              <span>راسلنا على الواتساب</span>
+            </a>
+            <a
+              href="tel:+966533251666"
+              class="bg-transparent border-3 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition transform hover:scale-105 backdrop-blur-sm inline-flex items-center gap-3"
+            >
+              <i class="fas fa-phone-alt"></i>
+              <span>اتصل بنا الآن</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12">
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
-            <p class="text-gray-400">
-              احد اكبر الموردين من جميع دول العالم لمنتجات المطاعم والفنادق في
-              المملكة العربية السعودية
+            <img src="logo.svg" alt="شركة معونة" class="w-24 mb-4 brightness-0 invert drop-shadow-lg" />
+            <h1 class="text-xl md:text-xl font-black mb-8 leading-tight">
+            شركة <span class="text-sky-300">معونة</span> التجاريه 
+          </h1>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              الشريك الموثوق في توريد أفضل المنتجات الغذائية العالمية بأعلى معايير الجودة
             </p>
           </div>
+          
           <div>
-            <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-link text-sky-400 text-sm"></i>
+              روابط سريعة
+            </h4>
             <ul class="space-y-2">
-              <li>
-                <a href="index.html" class="text-gray-400 hover:text-white"
-                  >الرئيسية</a
-                >
+              <li><a href="index.html" class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2">
+                <i class="fas fa-chevron-left text-xs"></i><span>الرئيسية</span></a></li>
+              <li><a href="products.html" class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2">
+                <i class="fas fa-chevron-left text-xs"></i><span>المنتجات</span></a></li>
+              <li><a href="about.html" class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2">
+                <i class="fas fa-chevron-left text-xs"></i><span>من نحن</span></a></li>
+              <li><a href="contact.html" class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2">
+                <i class="fas fa-chevron-left text-xs"></i><span>تواصل معنا</span></a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-clock text-sky-400 text-sm"></i>
+              أوقات العمل
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-calendar-check text-green-500 text-xs"></i>
+                <span>السبت - الخميس</span>
               </li>
-              <li>
-                <a href="products.html" class="text-gray-400 hover:text-white"
-                  >المنتجات</a
-                >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-clock text-sky-400 text-xs"></i>
+                <span>٧:٣٠ ص - ٥:٣٠ م</span>
               </li>
-              <li>
-                <a href="about.html" class="text-gray-400 hover:text-white"
-                  >من نحن</a
-                >
-              </li>
-              <li>
-                <a href="contact.html" class="text-gray-400 hover:text-white"
-                  >تواصل معنا</a
-                >
+              <li class="flex items-center gap-2 text-red-400">
+                <i class="fas fa-calendar-times text-xs"></i>
+                <span>مغلق: الجمعة</span>
               </li>
             </ul>
           </div>
+          
           <div>
-            <h4 class="text-xl font-bold mb-4">الفئات</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="products.html#maona"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات معونة</a
-                >
-              </li>
-              <li>
-                <a
-                  href="products.html#makin"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات ماكين</a
-                >
-              </li>
-              <li>
-                <a
-                  href="products.html#atyab"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات أطياب</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
-            <div class="flex space-x-reverse space-x-4 text-2xl">
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a href="#" class="text-gray-400 hover:text-green-500 transition"
-                ><i class="fab fa-whatsapp"></i
-              ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-twitter"></i
-              ></a>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-share-alt text-sky-400 text-sm"></i>
+              تابعنا
+            </h4>
+            <div class="flex space-x-reverse space-x-3 text-xl mb-4">
+              <a href="https://snapchat.com/add/maonahcompany" target="_blank" class="text-gray-400 hover:text-yellow-400 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 social-icon relative">
+                <i class="fab fa-snapchat-ghost relative z-10"></i></a>
+              <a href="https://tiktok.com/@maonahcompany" target="_blank" class="text-gray-400 hover:text-white transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black social-icon relative">
+                <i class="fab fa-tiktok relative z-10"></i></a>
+              <a href="https://wa.me/966533251666" target="_blank" class="text-gray-400 hover:text-green-500 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 social-icon relative">
+                <i class="fab fa-whatsapp relative z-10"></i></a>
+            </div>
+            <div class="space-y-2 text-gray-400 text-sm">
+              <p class="flex items-center gap-2">
+                <i class="fas fa-phone text-sky-400 text-xs"></i>
+                <span dir="ltr">+966 53 325 1666</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="fas fa-envelope text-sky-400 text-xs"></i>
+                <span class="text-xs break-all">maonah.co.ksa@gmail.com</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>
-            &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق
-            محفوظة.
+        
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-gray-400 text-sm">
+            &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق محفوظة.
           </p>
         </div>
       </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+      <a href="https://wa.me/966533251666" target="_blank" class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
 
     <script>
       // Mobile menu toggle
@@ -396,6 +629,62 @@
 
       mobileMenuBtn.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
+      });
+
+      // Fade-in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll('.fade-in').forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        observer.observe(el);
+      });
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Add click tracking for contact methods
+      const contactLinks = document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"], a[href^="https://wa.me/"]');
+      contactLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          console.log('Contact method clicked:', this.href);
+        });
+      });
+
+      // Animate cards on load
+      window.addEventListener('load', () => {
+        const cards = document.querySelectorAll('.contact-card');
+        cards.forEach((card, index) => {
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, index * 150);
+        });
       });
     </script>
   </body>

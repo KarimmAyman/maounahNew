@@ -6,7 +6,7 @@
     <title>من نحن - شركة معونة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -21,94 +21,300 @@
       .hero-gradient {
         background: linear-gradient(
           135deg,
-          #4a5568 0%,
+          #667eea 0%,
           #5dade2 50%,
           #85c1e9 100%
         );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-gradient::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px
+        );
+        background-size: 50px 50px;
+        animation: moveBackground 20s linear infinite;
+      }
+
+      @keyframes moveBackground {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
       }
 
       .value-card {
-        transition: transform 0.3s ease;
-      }
-      .value-card:hover {
-        transform: scale(1.05);
-      }
-      .timeline-item {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
-        padding-right: 50px;
+        overflow: hidden;
+        border: 2px solid transparent;
       }
-      .timeline-item::before {
+
+      .value-card::before {
         content: "";
         position: absolute;
-        right: 18px;
-        top: 30px;
-        bottom: -30px;
-        width: 2px;
-        background: linear-gradient(180deg, #5dade2, #85c1e9);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(93, 173, 226, 0.05) 0%,
+          rgba(133, 193, 233, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: 0;
       }
-      .timeline-item:last-child::before {
+
+      .value-card:hover::before {
+        opacity: 1;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(93, 173, 226, 0.3);
+        border-color: rgba(93, 173, 226, 0.4);
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-right: 60px;
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.6s ease;
+      }
+
+      .timeline-item.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .timeline-line {
+        position: absolute;
+        right: 24px;
+        top: 40px;
+        bottom: -40px;
+        width: 3px;
+        background: linear-gradient(180deg, #667eea, #5dade2, #85c1e9);
+      }
+
+      .timeline-item:last-child .timeline-line {
         display: none;
       }
+
       .timeline-dot {
         position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 20px;
-        height: 20px;
+        right: 12px;
+        top: 12px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        background: #5dade2;
-        box-shadow: 0 0 0 4px #dbeafe;
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        box-shadow: 0 0 0 6px rgba(93, 173, 226, 0.2);
+        z-index: 10;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 6px rgba(93, 173, 226, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 0 12px rgba(93, 173, 226, 0.1);
+        }
       }
 
       .nav-link {
         position: relative;
         transition: color 0.3s;
       }
+
       .nav-link::after {
         content: "";
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 3px;
         bottom: -5px;
         right: 0;
-        background: linear-gradient(90deg, #5dade2, #85c1e9);
+        background: linear-gradient(90deg, #667eea, #5dade2);
         transition: width 0.3s;
+        border-radius: 2px;
       }
+
       .nav-link:hover::after {
         width: 100%;
       }
 
       .logo-large {
-        height: 120px;
-        width: 120px;
+        height: 100px;
+        width: 100px;
         object-fit: contain;
-        transform: translateY(10px);
       }
 
       @media (max-width: 768px) {
         .logo-large {
-          height: 120px;
-          width: 120px;
-          transform: translateY(5px);
+          height: 80px;
+          width: 80px;
         }
+      }
+
+      .stat-card {
+        transition: all 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px) scale(1.05);
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .icon-circle {
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        box-shadow: 0 8px 20px rgba(93, 173, 226, 0.3);
+        transition: all 0.3s;
+      }
+
+      .value-card:hover .icon-circle {
+        transform: scale(1.1) rotate(10deg);
+        box-shadow: 0 12px 30px rgba(93, 173, 226, 0.5);
+      }
+
+      .section-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        color: white;
+        padding: 8px 24px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+      }
+
+      .divider-gradient {
+        height: 4px;
+        width: 100px;
+        background: linear-gradient(90deg, #667eea, #5dade2, #85c1e9);
+        border-radius: 2px;
+        margin: 0 auto;
+      }
+
+      .social-icon {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .social-icon::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .social-icon:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-8px) scale(1.1);
+        box-shadow: 0 15px 35px rgba(93, 173, 226, 0.4);
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 1000;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .whatsapp-button {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #25d366, #128c7e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .whatsapp-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-button i {
+        color: white;
+        font-size: 35px;
       }
     </style>
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
       <div class="container mx-auto px-4">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center py-2"
-        >
+          <div class="flex flex-col md:flex-row justify-between items-center py-3">
           <!-- Logo Center -->
           <div
-            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative"
+            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0"
           >
             <img
               src="logo.svg"
               alt="Logo"
-              class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300"
+              class="logo-large drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
           </div>
 
@@ -118,26 +324,26 @@
               <li>
                 <a
                   href="index.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >الرئيسية</a
                 >
               </li>
               <li>
                 <a
                   href="products.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >المنتجات</a
                 >
               </li>
               <li>
-                <a href="about.html" class="nav-link text-sky-400 font-bold"
+                <a href="about.html" class="nav-link text-sky-500 font-bold"
                   >من نحن</a
                 >
               </li>
               <li>
                 <a
                   href="contact.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >تواصل معنا</a
                 >
               </li>
@@ -147,7 +353,7 @@
           <!-- Mobile Button -->
           <button
             id="mobileMenuBtn"
-            class="md:hidden text-2xl text-gray-700 absolute left-4 top-5"
+            class="md:hidden text-2xl text-gray-700 absolute left-4 top-4 hover:text-sky-500 transition"
           >
             <i class="fas fa-bars"></i>
           </button>
@@ -158,20 +364,28 @@
       <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
         <ul class="py-4 px-4 space-y-3">
           <li>
-            <a href="index.html" class="block text-gray-700 py-2">الرئيسية</a>
+            <a
+              href="index.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
+              >الرئيسية</a
+            >
           </li>
           <li>
-            <a href="products.html" class="block text-gray-700 py-2"
+            <a
+              href="products.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
               >المنتجات</a
             >
           </li>
           <li>
-            <a href="about.html" class="block text-sky-400 font-bold py-2"
+            <a href="about.html" class="block text-sky-500 font-bold py-2"
               >من نحن</a
             >
           </li>
           <li>
-            <a href="contact.html" class="block text-gray-700 py-2"
+            <a
+              href="contact.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
               >تواصل معنا</a
             >
           </li>
@@ -180,67 +394,119 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="hero-gradient text-white py-20 mt-32 md:mt-36">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl font-bold mb-4">من نحن</h1>
-        <p class="text-xl">تعرف على قصتنا ورؤيتنا</p>
+    <section class="hero-gradient text-white py-16 mt-24 md:mt-28 relative">
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="inline-block mb-6">
+          <span
+            class="bg-white/20 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-bold tracking-wider border border-white/30"
+          >
+            قصة نجاح منذ 2010
+          </span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-black mb-3 leading-tight">
+          من نحن
+        </h1>
+        <p class="text-lg md:text-xl opacity-95 max-w-2xl mx-auto">
+          الشريك الموثوق في توريد أفضل المنتجات الغذائية العالمية
+        </p>
       </div>
     </section>
 
     <!-- Company Story -->
-    <section class="py-20 bg-white">
+    <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-6">قصتنا</h2>
-            <div
-              class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto mb-8"
-            ></div>
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12 fade-in">
+            <span class="section-badge mb-6">Our Story</span>
+            <h2 class="text-4xl md:text-5xl font-black text-gray-900 mt-6 mb-4">
+              قصة
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600"
+                >معونة</span
+              >
+            </h2>
+            <div class="divider-gradient mt-6"></div>
           </div>
-          <div class="text-lg text-gray-700 leading-relaxed space-y-6">
-            <p>
-              شركة معونة هي إحدى الشركات الرائدة في مجال توريد وتوزيع المنتجات
-              الغذائية للمطاعم والفنادق في المملكة العربية السعودية. نفتخر
-              بكوننا أحد أكبر الموردين من جميع دول العالم، حيث نقدم منتجات عالية
-              الجودة تلبي احتياجات عملائنا في قطاع الضيافة والمطاعم.
-            </p>
-            <p>
-              تأسست شركتنا على مبادئ الجودة والالتزام والتميز في الخدمة. نؤمن
-              بأن نجاح عملائنا من المطاعم والفنادق يعتمد على جودة المنتجات التي
-              نوفرها، ولذلك نحرص على اختيار أفضل الموردين العالميين ونتبع أعلى
-              معايير التخزين والتوزيع.
-            </p>
-            <p>
-              نقدم ثلاث فئات رئيسية من المنتجات: منتجات معونة الغذائية المتنوعة،
-              منتجات ماكين للدجاج المقرمش، ومنتجات أطياب من اللحوم والمأكولات
-              الشرقية. كل فئة مصممة لتلبية احتياجات المطاعم والفنادق المختلفة
-              وتقديم أفضل تجربة لضيوفهم.
-            </p>
+
+          <div
+            class="glass-effect p-8 md:p-12 rounded-3xl shadow-2xl border-2 border-sky-100 fade-in"
+          >
+            <div class="text-lg text-gray-700 leading-relaxed space-y-6">
+              <p class="text-xl font-semibold text-gray-800 leading-relaxed">
+                شركة معونة هي إحدى الشركات الرائدة في مجال توريد وتوزيع المنتجات
+                الغذائية للمطاعم والفنادق في المملكة العربية السعودية.
+              </p>
+              <p>
+                نفتخر بكوننا
+                <span class="font-bold text-sky-600"
+                  >أحد أكبر الموردين من جميع دول العالم</span
+                >، حيث نقدم منتجات عالية الجودة تلبي احتياجات عملائنا في قطاع
+                الضيافة والمطاعم. نوفر تشكيلة واسعة من أفضل العلامات التجارية
+                العالمية والمحلية.
+              </p>
+              <p>
+                تأسست شركتنا على مبادئ
+                <span class="font-bold text-sky-600"
+                  >الجودة والالتزام والتميز في الخدمة</span
+                >. نؤمن بأن نجاح عملائنا من المطاعم والفنادق يعتمد على جودة
+                المنتجات التي نوفرها، ولذلك نحرص على اختيار أفضل الموردين
+                العالميين ونتبع أعلى معايير التخزين والتوزيع.
+              </p>
+              <p>
+                نقدم مجموعة متنوعة من العلامات التجارية المتميزة بما في ذلك:
+                <span class="font-bold text-sky-600"
+                  >ماما صوص، معونه، ماكين، تب توب، لتوسا، كرنكل رووك، كافنديش،
+                  وجوردينا</span
+                >. كل علامة تجارية مصممة لتلبية احتياجات المطاعم والفنادق
+                المختلفة وتقديم أفضل تجربة لضيوفهم.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Vision & Mission -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-16 bg-white/50">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <div class="bg-white p-10 rounded-3xl shadow-lg">
-            <div class="text-5xl mb-6 text-sky-400">🎯</div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">رؤيتنا</h3>
-            <p class="text-lg text-gray-700 leading-relaxed">
-              أن نكون الشريك الأول والأوثق للمطاعم والفنادق في المملكة العربية
-              السعودية في توريد المنتجات الغذائية عالية الجودة، ونساهم في نجاح
-              أعمالهم من خلال تقديم منتجات متميزة وخدمة لا مثيل لها.
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div
+            class="value-card glass-effect p-10 rounded-3xl shadow-xl fade-in"
+          >
+            <div
+              class="icon-circle w-24 h-24 rounded-3xl flex items-center justify-center text-white text-5xl mx-auto mb-6"
+            >
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="text-3xl font-black text-gray-800 mb-6 text-center">
+              رؤيتنا
+            </h3>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+              أن نكون
+              <span class="font-bold text-sky-600">الشريك الأول والأوثق</span>
+              للمطاعم والفنادق في المملكة العربية السعودية في توريد المنتجات
+              الغذائية عالية الجودة، ونساهم في نجاح أعمالهم من خلال تقديم منتجات
+              متميزة وخدمة لا مثيل لها.
             </p>
           </div>
-          <div class="bg-white p-10 rounded-3xl shadow-lg">
-            <div class="text-5xl mb-6 text-sky-400">🚀</div>
-            <h3 class="text-3xl font-bold text-gray-800 mb-4">مهمتنا</h3>
-            <p class="text-lg text-gray-700 leading-relaxed">
-              نلتزم بتوفير منتجات غذائية متنوعة من أفضل الموردين العالميين، مع
-              ضمان أعلى معايير الجودة والسلامة الغذائية، وتقديم خدمة توصيل سريعة
-              وموثوقة لجميع عملائنا في قطاع المطاعم والفنادق.
+
+          <div
+            class="value-card glass-effect p-10 rounded-3xl shadow-xl fade-in"
+            style="animation-delay: 0.1s"
+          >
+            <div
+              class="icon-circle w-24 h-24 rounded-3xl flex items-center justify-center text-white text-5xl mx-auto mb-6"
+            >
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="text-3xl font-black text-gray-800 mb-6 text-center">
+              مهمتنا
+            </h3>
+            <p class="text-lg text-gray-700 leading-relaxed text-center">
+              نلتزم بتوفير منتجات غذائية متنوعة من
+              <span class="font-bold text-sky-600">أفضل الموردين العالميين</span
+              >، مع ضمان أعلى معايير الجودة والسلامة الغذائية، وتقديم خدمة توصيل
+              سريعة وموثوقة لجميع عملائنا في قطاع المطاعم والفنادق.
             </p>
           </div>
         </div>
@@ -248,102 +514,172 @@
     </section>
 
     <!-- Values -->
-    <section class="py-20 bg-white">
+    <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-800 mb-6">قيمنا</h2>
-          <div
-            class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto"
-          ></div>
+        <div class="text-center mb-12 fade-in">
+          <span class="section-badge mb-6">Our Values</span>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mt-6 mb-4">
+            قيمنا
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600"
+              >الأساسية</span
+            >
+          </h2>
+          <div class="divider-gradient mt-6"></div>
         </div>
-        <div class="grid md:grid-cols-4 gap-8">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           <div
-            class="value-card text-center p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl border-2 border-sky-100"
+            class="value-card glass-effect text-center p-8 rounded-3xl shadow-lg fade-in"
           >
-            <div class="text-5xl mb-4">✨</div>
+            <div
+              class="icon-circle w-20 h-20 rounded-2xl flex items-center justify-center text-white text-4xl mx-auto mb-5"
+            >
+              <i class="fas fa-gem"></i>
+            </div>
             <h3 class="text-2xl font-bold text-gray-800 mb-3">الجودة</h3>
-            <p class="text-gray-600">
-              نلتزم بأعلى معايير الجودة العالمية في كل ما نوفره
+            <p class="text-gray-600 leading-relaxed">
+              نلتزم بأعلى معايير الجودة العالمية في كل ما نوفره من منتجات وخدمات
             </p>
           </div>
+
           <div
-            class="value-card text-center p-8 bg-gradient-to-br from-sky-50 to-sky-100 rounded-2xl border-2 border-sky-200"
+            class="value-card glass-effect text-center p-8 rounded-3xl shadow-lg fade-in"
+            style="animation-delay: 0.1s"
           >
-            <div class="text-5xl mb-4">🤝</div>
+            <div
+              class="icon-circle w-20 h-20 rounded-2xl flex items-center justify-center text-white text-4xl mx-auto mb-5"
+            >
+              <i class="fas fa-handshake"></i>
+            </div>
             <h3 class="text-2xl font-bold text-gray-800 mb-3">الثقة</h3>
-            <p class="text-gray-600">
-              نبني علاقات طويلة الأمد مع عملائنا قائمة على الثقة
+            <p class="text-gray-600 leading-relaxed">
+              نبني علاقات طويلة الأمد مع عملائنا قائمة على الثقة والشفافية
             </p>
           </div>
+
           <div
-            class="value-card text-center p-8 bg-gradient-to-br from-gray-50 to-sky-50 rounded-2xl border-2 border-gray-200"
+            class="value-card glass-effect text-center p-8 rounded-3xl shadow-lg fade-in"
+            style="animation-delay: 0.2s"
           >
-            <div class="text-5xl mb-4">⚡</div>
+            <div
+              class="icon-circle w-20 h-20 rounded-2xl flex items-center justify-center text-white text-4xl mx-auto mb-5"
+            >
+              <i class="fas fa-bolt"></i>
+            </div>
             <h3 class="text-2xl font-bold text-gray-800 mb-3">السرعة</h3>
-            <p class="text-gray-600">نضمن توصيل سريع وفعال لجميع الطلبات</p>
+            <p class="text-gray-600 leading-relaxed">
+              نضمن توصيل سريع وفعال لجميع الطلبات في الوقت المحدد
+            </p>
           </div>
+
           <div
-            class="value-card text-center p-8 bg-gradient-to-br from-sky-50 to-gray-50 rounded-2xl border-2 border-sky-100"
+            class="value-card glass-effect text-center p-8 rounded-3xl shadow-lg fade-in"
+            style="animation-delay: 0.3s"
           >
-            <div class="text-5xl mb-4">❤️</div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-3">العملاء</h3>
-            <p class="text-gray-600">نجاح عملائنا هو نجاحنا وأولويتنا القصوى</p>
+            <div
+              class="icon-circle w-20 h-20 rounded-2xl flex items-center justify-center text-white text-4xl mx-auto mb-5"
+            >
+              <i class="fas fa-heart"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-3">العملاء أولاً</h3>
+            <p class="text-gray-600 leading-relaxed">
+              نجاح عملائنا هو نجاحنا وأولويتنا القصوى في جميع قراراتنا
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Timeline -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-16 bg-white/50">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-gray-800 mb-6">رحلتنا</h2>
-          <div
-            class="w-20 h-1 bg-gradient-to-r from-sky-400 to-sky-500 mx-auto"
-          ></div>
+        <div class="text-center mb-12 fade-in">
+          <span class="section-badge mb-6">Our Journey</span>
+          <h2 class="text-4xl md:text-5xl font-black text-gray-900 mt-6 mb-4">
+            رحلة
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-600"
+              >النجاح</span
+            >
+          </h2>
+          <div class="divider-gradient mt-6"></div>
         </div>
-        <div class="max-w-3xl mx-auto">
-          <div class="timeline-item mb-16">
+
+        <div class="max-w-4xl mx-auto">
+          <div class="timeline-item mb-12" data-year="2010">
             <div class="timeline-dot"></div>
-            <div class="bg-white p-8 rounded-2xl shadow-lg">
-              <div class="text-sky-400 font-bold text-xl mb-2">2010</div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-3">التأسيس</h3>
-              <p class="text-gray-600">
-                بدأنا رحلتنا كأحد موردي المنتجات الغذائية للمطاعم في المملكة
+            <div class="timeline-line"></div>
+            <div class="glass-effect p-8 rounded-3xl shadow-lg">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-sky-500 font-black text-2xl">2010</span>
+                <span class="text-gray-400">|</span>
+                <i class="fas fa-flag-checkered text-sky-500 text-xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                البداية والتأسيس
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                بدأنا رحلتنا كأحد موردي المنتجات الغذائية للمطاعم في المملكة، مع
+                التركيز على الجودة والخدمة المتميزة
               </p>
             </div>
           </div>
-          <div class="timeline-item mb-16">
+
+          <div class="timeline-item mb-12" data-year="2015">
             <div class="timeline-dot"></div>
-            <div class="bg-white p-8 rounded-2xl shadow-lg">
-              <div class="text-sky-400 font-bold text-xl mb-2">2015</div>
+            <div class="timeline-line"></div>
+            <div class="glass-effect p-8 rounded-3xl shadow-lg">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-sky-500 font-black text-2xl">2015</span>
+                <span class="text-gray-400">|</span>
+                <i class="fas fa-globe text-sky-500 text-xl"></i>
+              </div>
               <h3 class="text-2xl font-bold text-gray-800 mb-3">
                 التوسع العالمي
               </h3>
-              <p class="text-gray-600">
-                أصبحنا نستورد من أفضل الموردين في جميع أنحاء العالم
+              <p class="text-gray-600 leading-relaxed">
+                أصبحنا نستورد من أفضل الموردين في جميع أنحاء العالم، موسعين
+                تشكيلة منتجاتنا بعلامات تجارية عالمية مرموقة
               </p>
             </div>
           </div>
-          <div class="timeline-item mb-16">
+
+          <div class="timeline-item mb-12" data-year="2020">
             <div class="timeline-dot"></div>
-            <div class="bg-white p-8 rounded-2xl shadow-lg">
-              <div class="text-sky-400 font-bold text-xl mb-2">2020</div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-3">الريادة</h3>
-              <p class="text-gray-600">
-                أصبحنا من أكبر موردي المطاعم والفنادق في المملكة
+            <div class="timeline-line"></div>
+            <div class="glass-effect p-8 rounded-3xl shadow-lg">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-sky-500 font-black text-2xl">2020</span>
+                <span class="text-gray-400">|</span>
+                <i class="fas fa-trophy text-sky-500 text-xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                الريادة في السوق
+              </h3>
+              <p class="text-gray-600 leading-relaxed">
+                أصبحنا من أكبر موردي المطاعم والفنادق في المملكة، بفضل التزامنا
+                بالجودة ورضا العملاء
               </p>
             </div>
           </div>
-          <div class="timeline-item">
+
+          <div class="timeline-item" data-year="2024">
             <div class="timeline-dot"></div>
-            <div class="bg-white p-8 rounded-2xl shadow-lg">
-              <div class="text-sky-400 font-bold text-xl mb-2">2024</div>
+            <div
+              class="glass-effect p-8 rounded-3xl shadow-lg bg-gradient-to-br from-sky-50 to-blue-50 border-2 border-sky-200"
+            >
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-sky-600 font-black text-2xl">2024</span>
+                <span class="text-gray-400">|</span>
+                <i class="fas fa-star text-sky-600 text-xl"></i>
+              </div>
               <h3 class="text-2xl font-bold text-gray-800 mb-3">
                 التميز المستمر
               </h3>
-              <p class="text-gray-600">
-                نستمر في تطوير خدماتنا وتوسيع شبكة عملائنا في قطاع الضيافة
+              <p class="text-gray-700 leading-relaxed font-semibold">
+                نستمر في تطوير خدماتنا وتوسيع شبكة عملائنا في قطاع الضيافة، مع
+                إضافة علامات تجارية جديدة ومتميزة
               </p>
             </div>
           </div>
@@ -352,111 +688,207 @@
     </section>
 
     <!-- Stats -->
-    <section class="py-20 hero-gradient text-white">
+    <section class="py-16 hero-gradient text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"
+        ></div>
+      </div>
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-black mb-4">
+            إنجازاتنا بالأرقام
+          </h2>
+          <p class="text-xl opacity-90">نفتخر بما حققناه معاً</p>
+        </div>
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-5xl mx-auto"
+        >
+          <div class="stat-card">
+            <div class="text-5xl md:text-6xl font-black mb-3">15+</div>
+            <p class="text-lg md:text-xl opacity-90">سنة من الخبرة</p>
+          </div>
+          <div class="stat-card">
+            <div class="text-5xl md:text-6xl font-black mb-3">8</div>
+            <p class="text-lg md:text-xl opacity-90">علامات تجارية</p>
+          </div>
+          <div class="stat-card">
+            <div class="text-5xl md:text-6xl font-black mb-3">500+</div>
+            <p class="text-lg md:text-xl opacity-90">مطعم وفندق</p>
+          </div>
+          <div class="stat-card">
+            <div class="text-5xl md:text-6xl font-black mb-3">100%</div>
+            <p class="text-lg md:text-xl opacity-90">رضا العملاء</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div class="text-5xl font-bold mb-2">14+</div>
-            <p class="text-xl">سنة من الخبرة</p>
-          </div>
-          <div>
-            <div class="text-5xl font-bold mb-2">200+</div>
-            <p class="text-xl">منتج متنوع</p>
-          </div>
-          <div>
-            <div class="text-5xl font-bold mb-2">500+</div>
-            <p class="text-xl">مطعم وفندق</p>
-          </div>
-          <div>
-            <div class="text-5xl font-bold mb-2">30+</div>
-            <p class="text-xl">دولة نستورد منها</p>
+        <div
+          class="max-w-4xl mx-auto glass-effect p-12 rounded-3xl shadow-2xl text-center border-2 border-sky-100"
+        >
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">
+            هل أنت مستعد للانضمام إلى عائلة معونة؟
+          </h2>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+            انضم إلى مئات العملاء الراضين واحصل على أفضل المنتجات بأفضل الأسعار
+          </p>
+          <div class="flex justify-center gap-4 flex-wrap">
+            <a
+              href="contact.html"
+              class="bg-gradient-to-r from-sky-500 to-sky-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition transform hover:scale-105 inline-flex items-center gap-3"
+            >
+              <i class="fas fa-phone-alt"></i>
+              <span>تواصل معنا الآن</span>
+            </a>
+            <a
+              href="products.html"
+              class="bg-white border-3 border-sky-500 text-sky-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-sky-50 transition transform hover:scale-105 inline-flex items-center gap-3"
+            >
+              <i class="fas fa-shopping-cart"></i>
+              <span>تصفح المنتجات</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer
+      class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12"
+    >
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
-            <p class="text-gray-400">
-              نقدم أفضل المنتجات الغذائية عالية الجودة في المملكة العربية
-              السعودية
+            <img
+              src="logo.svg"
+              alt="شركة معونة"
+              class="w-24 mb-4 brightness-0 invert drop-shadow-lg"
+            />
+            <h1 class="text-xl md:text-xl font-black mb-8 leading-tight">
+              شركة <span class="text-sky-300">معونة</span> التجاريه
+            </h1>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              الشريك الموثوق في توريد أفضل المنتجات الغذائية العالمية بأعلى
+              معايير الجودة
             </p>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-link text-sky-400 text-sm"></i>
+              روابط سريعة
+            </h4>
             <ul class="space-y-2">
               <li>
-                <a href="index.html" class="text-gray-400 hover:text-white"
-                  >الرئيسية</a
+                <a
+                  href="index.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>الرئيسية</span></a
                 >
               </li>
               <li>
-                <a href="products.html" class="text-gray-400 hover:text-white"
-                  >المنتجات</a
+                <a
+                  href="products.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>المنتجات</span></a
                 >
               </li>
               <li>
-                <a href="about.html" class="text-gray-400 hover:text-white"
-                  >من نحن</a
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>من نحن</span></a
                 >
               </li>
               <li>
-                <a href="contact.html" class="text-gray-400 hover:text-white"
-                  >تواصل معنا</a
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>تواصل معنا</span></a
                 >
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">الفئات</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="products.html#maona"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات معونة</a
-                >
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-clock text-sky-400 text-sm"></i>
+              أوقات العمل
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-calendar-check text-green-500 text-xs"></i>
+                <span>السبت - الخميس</span>
               </li>
-              <li>
-                <a
-                  href="products.html#makin"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات ماكين</a
-                >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-clock text-sky-400 text-xs"></i>
+                <span>٧:٣٠ ص - ٥:٣٠ م</span>
               </li>
-              <li>
-                <a
-                  href="products.html#atyab"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات أطياب</a
-                >
+              <li class="flex items-center gap-2 text-red-400">
+                <i class="fas fa-calendar-times text-xs"></i>
+                <span>مغلق: الجمعة</span>
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
-            <div class="flex space-x-reverse space-x-4 text-2xl">
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-facebook"></i
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-share-alt text-sky-400 text-sm"></i>
+              تابعنا
+            </h4>
+            <div class="flex space-x-reverse space-x-3 text-xl mb-4">
+              <a
+                href="https://snapchat.com/add/maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-yellow-400 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400 social-icon relative"
+              >
+                <i class="fab fa-snapchat-ghost relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-green-500 transition"
-                ><i class="fab fa-whatsapp"></i
+              <a
+                href="https://tiktok.com/@maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-white transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black social-icon relative"
+              >
+                <i class="fab fa-tiktok relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition"
-                ><i class="fab fa-instagram"></i
+              <a
+                href="https://wa.me/966533251666"
+                target="_blank"
+                class="text-gray-400 hover:text-green-500 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 social-icon relative"
+              >
+                <i class="fab fa-whatsapp relative z-10"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-twitter"></i
-              ></a>
+            </div>
+            <div class="space-y-2 text-gray-400 text-sm">
+              <p class="flex items-center gap-2">
+                <i class="fas fa-phone text-sky-400 text-xs"></i>
+                <span dir="ltr">+966 53 325 1666</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="fas fa-envelope text-sky-400 text-xs"></i>
+                <span class="text-xs break-all">maonah.co.ksa@gmail.com</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>
+
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-gray-400 text-sm">
             &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق
             محفوظة.
           </p>
@@ -464,13 +896,72 @@
       </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+      <a
+        href="https://wa.me/966533251666"
+        target="_blank"
+        class="whatsapp-button"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
     <script>
       // Mobile menu toggle
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mobileMenu = document.getElementById("mobileMenu");
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+
+      // Fade-in animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document
+        .querySelectorAll(".fade-in, .value-card, .timeline-item")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+          observer.observe(el);
+        });
+
+      // Timeline animation
+      document.querySelectorAll(".timeline-item").forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add("animate");
+        }, index * 200);
+      });
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
       });
     </script>
   </body>

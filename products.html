@@ -6,7 +6,7 @@
     <title>المنتجات - شركة معونة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <link
@@ -21,48 +21,128 @@
       .hero-gradient {
         background: linear-gradient(
           135deg,
-          #4a5568 0%,
+          #667eea 0%,
           #5dade2 50%,
           #85c1e9 100%
         );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-gradient::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px
+        );
+        background-size: 50px 50px;
+        animation: moveBackground 20s linear infinite;
+      }
+
+      @keyframes moveBackground {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(50px, 50px);
+        }
       }
 
       .product-card {
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent;
       }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(93, 173, 226, 0.05) 0%,
+          rgba(133, 193, 233, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        z-index: 0;
+      }
+
+      .product-card:hover::before {
+        opacity: 1;
+      }
+
       .product-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 30px rgba(93, 173, 226, 0.3);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(93, 173, 226, 0.3);
+        border-color: rgba(93, 173, 226, 0.4);
       }
+
       .product-image {
-        height: 250px;
-        border-radius: 1rem;
+        height: 240px;
+        border-radius: 1.5rem;
         overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #f0f0f0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        position: relative;
+        transition: all 0.4s;
       }
+
+      .product-card:hover .product-image {
+        box-shadow: inset 0 0 20px rgba(93, 173, 226, 0.1);
+      }
+
       .product-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.4s;
       }
+
+      .product-card:hover .product-image img {
+        transform: scale(1.08);
+      }
+
       .category-filter {
         cursor: pointer;
-        transition: all 0.3s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
       }
+
       .category-filter.active {
-        background: linear-gradient(135deg, #5dade2, #85c1e9);
+        background: linear-gradient(135deg, #667eea, #5dade2);
         color: white;
+        box-shadow: 0 6px 15px rgba(93, 173, 226, 0.35);
+        transform: translateY(-2px);
       }
+
+      .category-filter:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      }
+
       .fade-in {
-        animation: fadeIn 0.5s ease-in;
+        animation: fadeIn 0.6s ease-in forwards;
       }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(30px);
         }
         to {
           opacity: 1;
@@ -74,112 +154,260 @@
         position: relative;
         transition: color 0.3s;
       }
+
       .nav-link::after {
         content: "";
         position: absolute;
         width: 0;
-        height: 2px;
+        height: 3px;
         bottom: -5px;
         right: 0;
-        background: linear-gradient(90deg, #5dade2, #85c1e9);
+        background: linear-gradient(90deg, #667eea, #5dade2);
         transition: width 0.3s;
+        border-radius: 2px;
       }
+
       .nav-link:hover::after {
         width: 100%;
       }
 
       .logo-large {
-        height: 120px;
-        width: 120px;
+        height: 100px;
+        width: 100px;
         object-fit: contain;
-        transform: translateY(10px);
       }
 
       @media (max-width: 768px) {
         .logo-large {
-          height: 120px;
-          width: 120px;
-          transform: translateY(5px);
+          height: 80px;
+          width: 80px;
         }
+      }
+
+      .brand-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        padding: 8px;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s;
+      }
+
+      .product-card:hover .brand-logo {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 6px 18px rgba(93, 173, 226, 0.25);
+      }
+
+      .info-badge {
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        box-shadow: 0 3px 8px rgba(93, 173, 226, 0.2);
+        transition: all 0.3s;
+      }
+
+      .info-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(93, 173, 226, 0.3);
+      }
+
+      .status-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 18px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .product-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #5dade2, transparent);
+        margin: 16px 0;
+      }
+
+      .search-box {
+        position: relative;
+        transition: all 0.3s;
+      }
+
+      .search-box input {
+        transition: all 0.3s;
+        border: 2px solid #e5e7eb;
+      }
+
+      .search-box input:focus {
+        outline: none;
+        border-color: #5dade2;
+        box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
+      }
+
+      .search-box i {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+        transition: all 0.3s;
+      }
+
+      .search-box input:focus + i {
+        color: #5dade2;
+      }
+
+      .filter-section {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid #f3f4f6;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b7280;
+      }
+
+      .no-results i {
+        font-size: 4rem;
+        color: #d1d5db;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .category-filter {
+          font-size: 0.85rem;
+          padding: 10px 16px !important;
+        }
+      }
+
+      .product-count {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea, #5dade2);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-right: 8px;
       }
     </style>
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-gradient-to-br from-gray-50 via-blue-50 to-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
       <div class="container mx-auto px-4">
         <div
-          class="flex flex-col md:flex-row justify-between items-center py-2"
+          class="flex flex-col md:flex-row justify-between items-center py-3"
         >
-          <!-- Logo Center -->
           <div
-            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0 relative"
+            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0"
           >
             <img
               src="logo.svg"
               alt="Logo"
-              class="logo-large drop-shadow-lg hover:scale-105 transition-transform duration-300"
+              class="logo-large drop-shadow-2xl hover:scale-110 transition-transform duration-300"
             />
           </div>
 
-          <!-- Navigation Links -->
           <div class="flex items-center w-full md:w-auto justify-center">
             <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
               <li>
                 <a
                   href="index.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >الرئيسية</a
                 >
               </li>
               <li>
-                <a href="products.html" class="nav-link text-sky-400 font-bold"
+                <a href="products.html" class="nav-link text-sky-500 font-bold"
                   >المنتجات</a
                 >
               </li>
               <li>
                 <a
                   href="about.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >من نحن</a
                 >
               </li>
               <li>
                 <a
                   href="contact.html"
-                  class="nav-link text-gray-700 hover:text-sky-400"
+                  class="nav-link text-gray-700 hover:text-sky-500 font-semibold"
                   >تواصل معنا</a
                 >
               </li>
             </ul>
           </div>
 
-          <!-- Mobile Button -->
           <button
             id="mobileMenuBtn"
-            class="md:hidden text-2xl text-gray-700 absolute left-4 top-5"
+            class="md:hidden text-2xl text-gray-700 absolute left-4 top-4 hover:text-sky-500 transition"
           >
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
 
-      <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
         <ul class="py-4 px-4 space-y-3">
           <li>
-            <a href="index.html" class="block text-gray-700 py-2">الرئيسية</a>
+            <a
+              href="index.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
+              >الرئيسية</a
+            >
           </li>
           <li>
-            <a href="products.html" class="block text-sky-400 font-bold py-2"
+            <a href="products.html" class="block text-sky-500 font-bold py-2"
               >المنتجات</a
             >
           </li>
           <li>
-            <a href="about.html" class="block text-gray-700 py-2">من نحن</a>
+            <a
+              href="about.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
+              >من نحن</a
+            >
           </li>
           <li>
-            <a href="contact.html" class="block text-gray-700 py-2"
+            <a
+              href="contact.html"
+              class="block text-gray-700 py-2 hover:text-sky-500 font-semibold"
               >تواصل معنا</a
             >
           </li>
@@ -188,136 +416,246 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="hero-gradient text-white py-20 mt-32 md:mt-36">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl font-bold mb-4">منتجاتنا</h1>
-        <p class="text-xl">اكتشف مجموعتنا المتنوعة من المنتجات عالية الجودة</p>
+    <section class="hero-gradient text-white py-16 mt-24 md:mt-28 relative">
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl font-black mb-3 leading-tight">
+          منتجاتنا المميزة
+        </h1>
+        <p class="text-lg md:text-xl opacity-95 max-w-2xl mx-auto">
+          اكتشف مجموعتنا من أفضل العلامات التجارية العالمية
+        </p>
       </div>
     </section>
 
-    <!-- Category Filters -->
-    <section class="py-8 bg-white sticky top-32 md:top-36 z-40 shadow-md">
+    <!-- Search & Filters -->
+    <section class="filter-section sticky top-24 md:top-28 z-40 py-4">
       <div class="container mx-auto px-4">
-        <div class="flex flex-wrap justify-center gap-4">
-          <button
-            class="category-filter active px-6 py-3 rounded-full font-bold text-white"
-            data-category="all"
-          >
-            جميع المنتجات
-          </button>
-          <button
-            class="category-filter px-6 py-3 rounded-full font-bold bg-gray-200 text-gray-700 hover:bg-gray-300"
-            data-category="maona"
-          >
-            منتجات معونة
-          </button>
-          <button
-            class="category-filter px-6 py-3 rounded-full font-bold bg-gray-200 text-gray-700 hover:bg-gray-300"
-            data-category="makin"
-          >
-            منتجات ماكين
-          </button>
-          <button
-            class="category-filter px-6 py-3 rounded-full font-bold bg-gray-200 text-gray-700 hover:bg-gray-300"
-            data-category="atyab"
-          >
-            منتجات أطياب
-          </button>
+        <div class="mb-4">
+          <div class="search-box max-w-2xl mx-auto">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="ابحث عن منتج... (مثال: بطاطس، دجاج، أرز)"
+              class="w-full px-14 py-3 rounded-full text-lg"
+            />
+            <i class="fas fa-search text-xl"></i>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto pb-2 -mx-4 px-4">
+          <div class="flex gap-2 min-w-max md:justify-center">
+            <button
+              class="category-filter active px-5 py-2.5 rounded-full font-bold text-white text-sm"
+              data-category="all"
+            >
+              <i class="fas fa-th-large ml-1"></i>
+              الكل <span class="product-count" id="count-all">33</span>
+            </button>
+
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="maona"
+            >
+              معونه <span class="product-count hidden" id="count-maona">6</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="makin"
+            >
+              ماكين <span class="product-count hidden" id="count-makin">5</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="mamasauce"
+            >
+              ماما صوص
+              <span class="product-count hidden" id="count-mamasauce">4</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="tiptop"
+            >
+              تب توب
+              <span class="product-count hidden" id="count-tiptop">4</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="lutosa"
+            >
+              لتوسا
+              <span class="product-count hidden" id="count-lutosa">3</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="crinkle"
+            >
+              كرنكل
+              <span class="product-count hidden" id="count-crinkle">3</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="cavendish"
+            >
+              كافنديش
+              <span class="product-count hidden" id="count-cavendish">4</span>
+            </button>
+            <button
+              class="category-filter px-5 py-2.5 rounded-full font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm"
+              data-category="jordina"
+            >
+              جوردينا
+              <span class="product-count hidden" id="count-jordina">4</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Products Section -->
-    <section class="py-16">
+    <section class="py-12">
       <div class="container mx-auto px-4">
-        <div id="productsGrid" class="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-          <!-- Products will be dynamically inserted here -->
+        <div
+          id="productsGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        ></div>
+        <div id="noResults" class="no-results hidden">
+          <i class="fas fa-search"></i>
+          <h3 class="text-2xl font-bold mb-2">لا توجد نتائج</h3>
+          <p>لم نتمكن من العثور على منتجات تطابق بحثك</p>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer
+      class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-12"
+    >
       <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 class="text-2xl font-bold mb-4">شركة معونة</h3>
-            <p class="text-gray-400">
-              نقدم أفضل المنتجات الغذائية عالية الجودة في المملكة العربية
-              السعودية
+            <img
+              src="logo.svg"
+              alt="شركة معونة"
+              class="w-24 mb-4 brightness-0 invert drop-shadow-lg"
+            />
+            <h1 class="text-xl md:text-xl font-black mb-8 leading-tight">
+              شركة <span class="text-sky-300">معونة</span> التجارية
+            </h1>
+            <p class="text-gray-400 leading-relaxed text-sm">
+              الشريك الموثوق في توريد أفضل المنتجات الغذائية العالمية بأعلى
+              معايير الجودة
             </p>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">روابط سريعة</h4>
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-link text-sky-400 text-sm"></i>
+              روابط سريعة
+            </h4>
             <ul class="space-y-2">
               <li>
-                <a href="index.html" class="text-gray-400 hover:text-white"
-                  >الرئيسية</a
+                <a
+                  href="index.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>الرئيسية</span></a
                 >
               </li>
               <li>
-                <a href="products.html" class="text-gray-400 hover:text-white"
-                  >المنتجات</a
+                <a
+                  href="products.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>المنتجات</span></a
                 >
               </li>
               <li>
-                <a href="about.html" class="text-gray-400 hover:text-white"
-                  >من نحن</a
+                <a
+                  href="about.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>من نحن</span></a
                 >
               </li>
               <li>
-                <a href="contact.html" class="text-gray-400 hover:text-white"
-                  >تواصل معنا</a
+                <a
+                  href="contact.html"
+                  class="text-gray-400 hover:text-sky-400 transition text-sm flex items-center gap-2"
+                >
+                  <i class="fas fa-chevron-left text-xs"></i
+                  ><span>تواصل معنا</span></a
                 >
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">الفئات</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="products.html#maona"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات معونة</a
-                >
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-clock text-sky-400 text-sm"></i>
+              أوقات العمل
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-calendar-check text-green-500 text-xs"></i>
+                <span>السبت - الخميس</span>
               </li>
-              <li>
-                <a
-                  href="products.html#makin"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات ماكين</a
-                >
+              <li class="flex items-center gap-2">
+                <i class="fas fa-clock text-sky-400 text-xs"></i>
+                <span>٧:٣٠ ص - ٥:٣٠ م</span>
               </li>
-              <li>
-                <a
-                  href="products.html#atyab"
-                  class="text-gray-400 hover:text-white"
-                  >منتجات أطياب</a
-                >
+              <li class="flex items-center gap-2 text-red-400">
+                <i class="fas fa-calendar-times text-xs"></i>
+                <span>مغلق: الجمعة</span>
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="text-xl font-bold mb-4">تواصل معنا</h4>
-            <div class="flex space-x-reverse space-x-4 text-2xl">
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-facebook"></i
+            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+              <i class="fas fa-share-alt text-sky-400 text-sm"></i>
+              تابعنا
+            </h4>
+            <div class="flex space-x-reverse space-x-3 text-xl mb-4">
+              <a
+                href="https://snapchat.com/add/maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-yellow-400 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-yellow-400"
+              >
+                <i class="fab fa-snapchat-ghost"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-green-500 transition"
-                ><i class="fab fa-whatsapp"></i
+              <a
+                href="https://tiktok.com/@maonahcompany"
+                target="_blank"
+                class="text-gray-400 hover:text-white transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-black"
+              >
+                <i class="fab fa-tiktok"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-300 transition"
-                ><i class="fab fa-instagram"></i
+              <a
+                href="https://wa.me/966533251666"
+                target="_blank"
+                class="text-gray-400 hover:text-green-500 transition transform hover:scale-110 w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500"
+              >
+                <i class="fab fa-whatsapp"></i
               ></a>
-              <a href="#" class="text-gray-400 hover:text-sky-400 transition"
-                ><i class="fab fa-twitter"></i
-              ></a>
+            </div>
+            <div class="space-y-2 text-gray-400 text-sm">
+              <p class="flex items-center gap-2">
+                <i class="fas fa-phone text-sky-400 text-xs"></i>
+                <span dir="ltr">+966 53 325 1666</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <i class="fas fa-envelope text-sky-400 text-xs"></i>
+                <span class="text-xs break-all">maonah.co.ksa@gmail.com</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>
+
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-gray-400 text-sm">
             &copy; 2024 شركة معونة - المملكة العربية السعودية. جميع الحقوق
             محفوظة.
           </p>
@@ -326,234 +664,501 @@
     </footer>
 
     <script>
-      // Products Data with images
       const products = [
-        // منتجات ماكين
         {
-          id: 1,
-          name: "دونات الدجاج المقلية",
+          id: 201,
+          name: "أرز بسمتي فاخر معونه",
           description:
-            "مقرمشة من الخارج وهشة من الداخل، مصنوعة من دجاج طازج متبل بتوابل لذيذة. وجبة مثالية لمحبي الطعم الفريد.",
+            "أرز بسمتي عالي الجودة، حبة طويلة وعطرية، مثالي لجميع أنواع الأطباق",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185333.png",
+          badge: "جودة عالية",
+          brandLogo: "logo.svg",
+          bags: "20 كيس",
+          weight: "5 كجم",
+        },
+        {
+          id: 202,
+          name: "معكرونة بالصلصة الإيطالية",
+          description:
+            "معكرونة فاخرة محضرة بصلصة طماطم إيطالية أصلية، غنية بالنكهات الطبيعية",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185326.png",
+          brandLogo: "logo.svg",
+          bags: "24 كيس",
+          weight: "500 جم",
+        },
+        {
+          id: 203,
+          name: "فول مدمس ممتاز",
+          description:
+            "فول مدمس محضر بطريقة تقليدية، غني بالبروتين والألياف الطبيعية",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185342.png",
+          brandLogo: "logo.svg",
+          bags: "12 علبة",
+          weight: "2 كجم",
+        },
+        {
+          id: 204,
+          name: "طحينة سمسم طبيعية",
+          description:
+            "طحينة سمسم نقية 100%، محضرة من حبوب السمسم المحمصة بعناية",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185350.png",
+          brandLogo: "logo.svg",
+          bags: "18 عبوة",
+          weight: "1 كجم",
+        },
+        {
+          id: 205,
+          name: "حمص الشام الفاخر",
+          description:
+            "حمص شام عالي الجودة، غني بالبروتين ومثالي للشوربات والسلطات",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185354.png",
+          brandLogo: "logo.svg",
+          bags: "25 كيس",
+          weight: "1 كجم",
+        },
+        {
+          id: 206,
+          name: "عدس أصفر ممتاز",
+          description: "عدس أصفر فاخر، سريع الطهي وغني بالقيمة الغذائية",
+          category: "maona",
+          image: "images/Screenshot 2025-11-12 185350.png",
+          brandLogo: "logo.svg",
+          bags: "30 كيس",
+          weight: "1 كجم",
+        },
+        {
+          id: 301,
+          name: "بطاطس مقلية ماكين الكلاسيكية",
+          description: "بطاطس مقلية ذهبية مقرمشة، محضرة من أجود أنواع البطاطس",
           category: "makin",
           image: "images/aa.jpg",
           badge: "الأكثر مبيعاً",
+          brandLogo: "images/McCain Foods _idCBGsyJRN_0.svg",
           bags: "10 أكياس",
-          weight: "1 كجم للكيس",
+          weight: "2.5 كجم",
         },
         {
-          id: 2,
-          name: "برجر الدجاج الفاخر",
+          id: 302,
+          name: "دونات الدجاج المقلية ماكين",
           description:
-            "شرائح دجاج طرية ومتبلة بنكهات مميزة، محضرة بعناية فائقة لتقديم أفضل تجربة طعام.",
+            "مقرمشة من الخارج وهشة من الداخل، مصنوعة من دجاج طازج متبل بتوابل لذيذة",
           category: "makin",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          bags: "12 كيس",
-          weight: "800 جم للكيس",
-        },
-        {
-          id: 3,
-          name: "أجنحة الدجاج المتبلة",
-          description:
-            "أجنحة دجاج طازجة متبلة بخلطة خاصة من التوابل، مقرمشة ولذيذة. مثالية للمشاركة مع العائلة.",
-          category: "makin",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          bags: "15 كيس",
-          weight: "1.2 كجم للكيس",
-        },
-        {
-          id: 4,
-          name: "ستريبس الدجاج الذهبية",
-          description:
-            "قطع دجاج مقرمشة من الخارج وطرية من الداخل، مغطاة بطبقة ذهبية لذيذة.",
-          category: "makin",
-          image: "images/Screenshot 2025-11-12 185359.png",
-          bags: "20 كيس",
-          weight: "750 جم للكيس",
-        },
-        // منتجات معونة
-        {
-          id: 5,
-          name: "معكرونة بالصلصة الإيطالية",
-          description:
-            "معكرونة فاخرة محضرة بصلصة طماطم إيطالية أصلية، غنية بالنكهات الطبيعية.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185326.png",
-          bags: "24 كيس",
-          weight: "500 جم للكيس",
-        },
-        {
-          id: 6,
-          name: "أرز بسمتي فاخر",
-          description:
-            "أرز بسمتي عالي الجودة، حبة طويلة وعطرية، مثالي لجميع أنواع الأطباق.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185333.png",
-          bags: "20 كيس",
-          weight: "5 كجم للكيس",
-        },
-        {
-          id: 7,
-          name: "فول مدمس ممتاز",
-          description:
-            "فول مدمس محضر بطريقة تقليدية، غني بالبروتين والألياف الطبيعية.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185342.png",
-          bags: "12 كيس",
-          weight: "2 كجم للكيس",
-        },
-        {
-          id: 8,
-          name: "طحينة سمسم طبيعية",
-          description:
-            "طحينة سمسم نقية 100%، محضرة من حبوب السمسم المحمصة بعناية.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          bags: "18 كيس",
-          weight: "1 كجم للكيس",
-        },
-        {
-          id: 9,
-          name: "حمص الشام الفاخر",
-          description:
-            "حمص شام عالي الجودة، غني بالبروتين ومثالي للشوربات والسلطات.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185354.png",
-          bags: "25 كيس",
-          weight: "1 كجم للكيس",
-        },
-        {
-          id: 10,
-          name: "عدس أصفر ممتاز",
-          description: "عدس أصفر فاخر، سريع الطهي وغني بالقيمة الغذائية.",
-          category: "maona",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          bags: "30 كيس",
-          weight: "1 كجم للكيس",
-        },
-        // منتجات أطياب
-        {
-          id: 11,
-          name: "كفتة لحم متبلة",
-          description:
-            "كفتة لحم طازجة متبلة بخلطة خاصة من البهارات العربية الأصيلة.",
-          category: "atyab",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          badge: "جديد",
-          bags: "10 أكياس",
-          weight: "1 كجم للكيس",
-        },
-        {
-          id: 12,
-          name: "كبدة إسكندراني",
-          description:
-            "كبدة طازجة محضرة على الطريقة الإسكندرانية الأصيلة مع الفلفل الأخضر.",
-          category: "atyab",
-          image: "images/Screenshot 2025-11-12 185350.png",
-          bags: "15 كيس",
-          weight: "800 جم للكيس",
-        },
-        {
-          id: 13,
-          name: "سجق شرقي حار",
-          description: "سجق محضر بتوابل شرقية حارة، مثالي للإفطار والعشاء.",
-          category: "atyab",
-          image: "images/Screenshot 2025-11-12 185359.png",
-          bags: "20 كيس",
-          weight: "500 جم للكيس",
-        },
-        {
-          id: 14,
-          name: "شاورما لحم مشوي",
-          description: "شرائح لحم مشوية ومتبلة بطريقة احترافية، جاهزة للتحمير.",
-          category: "atyab",
-          image: "images/Screenshot 2025-11-12 185354.png",
-          bags: "12 كيس",
-          weight: "1.5 كجم للكيس",
-        },
-        {
-          id: 15,
-          name: "فتة لحم فاخرة",
-          description:
-            "لحم فتة طري ومتبل، محضر بطريقة تقليدية مع الأرز والخبز المحمص.",
-          category: "atyab",
           image: "images/aa.jpg",
-          bags: "8 أكياس",
-          weight: "2 كجم للكيس",
+          brandLogo: "images/McCain Foods _idCBGsyJRN_0.svg",
+          bags: "10 أكياس",
+          weight: "1 كجم",
         },
         {
-          id: 16,
-          name: "طاجن لحم بالخضار",
-          description: "لحم طري مع مزيج من الخضروات الطازجة، طبق شهي ومغذي.",
-          category: "atyab",
+          id: 303,
+          name: "برجر الدجاج الفاخر ماكين",
+          description:
+            "شرائح دجاج طرية ومتبلة بنكهات مميزة، محضرة بعناية فائقة",
+          category: "makin",
+          image: "images/Screenshot 2025-11-12 185350.png",
+          brandLogo: "images/McCain Foods _idCBGsyJRN_0.svg",
+          bags: "12 كيس",
+          weight: "800 جم",
+        },
+        {
+          id: 304,
+          name: "أجنحة الدجاج المتبلة ماكين",
+          description:
+            "أجنحة دجاج طازجة متبلة بخلطة خاصة من التوابل، مقرمشة ولذيذة",
+          category: "makin",
+          image: "images/Screenshot 2025-11-12 185350.png",
+          brandLogo: "images/McCain Foods _idCBGsyJRN_0.svg",
+          bags: "15 كيس",
+          weight: "1.2 كجم",
+        },
+        {
+          id: 305,
+          name: "ستريبس الدجاج الذهبية ماكين",
+          description:
+            "قطع دجاج مقرمشة من الخارج وطرية من الداخل، مغطاة بطبقة ذهبية لذيذة",
+          category: "makin",
           image: "images/Screenshot 2025-11-12 185359.png",
+          brandLogo: "images/McCain Foods _idCBGsyJRN_0.svg",
+          bags: "20 كيس",
+          weight: "750 جم",
+        },
+        {
+          id: 101,
+          name: "كاتشب طماطم ماما صوص",
+          description:
+            "كاتشب طماطم طبيعي بنكهة غنية ومميزة، محضر من أجود أنواع الطماطم الطازجة",
+          category: "mamasauce",
+          image: "images/mamaSouce.jpg",
+          badge: "الأكثر مبيعاً",
+          brandLogo: "images/mamaSouce.jpg",
+          bags: "24 زجاجة",
+          weight: "500 مل",
+        },
+        {
+          id: 102,
+          name: "مايونيز ماما صوص",
+          description:
+            "مايونيز كريمي فاخر بنكهة لذيذة، مثالي لجميع أنواع السندويشات والسلطات",
+          category: "mamasauce",
+          image: "images/mamaSouce.jpg",
+          brandLogo: "images/mamaSouce.jpg",
+          bags: "20 عبوة",
+          weight: "450 جم",
+        },
+        {
+          id: 103,
+          name: "صلصة باربكيو ماما صوص",
+          description:
+            "صلصة باربكيو حارة ولذيذة، مثالية للشواء واللحوم المشوية",
+          category: "mamasauce",
+          image: "images/mamaSouce.jpg",
+          brandLogo: "images/mamaSouce.jpg",
+          bags: "18 عبوة",
+          weight: "400 جم",
+        },
+        {
+          id: 104,
+          name: "صلصة الثوم ماما صوص",
+          description:
+            "صلصة ثوم كريمية غنية، تضيف نكهة رائعة لجميع أنواع الأطعمة",
+          category: "mamasauce",
+          image: "images/mamaSouce.jpg",
+          brandLogo: "images/mamaSouce.jpg",
+          bags: "20 عبوة",
+          weight: "350 جم",
+        },
+        {
+          id: 401,
+          name: "بطاطس تب توب المقرمشة",
+          description:
+            "بطاطس مقلية فائقة الجودة بقرمشة لا تقاوم، محضرة من بطاطس مختارة بعناية",
+          category: "tiptop",
+          image: "images/tiptop.jpg",
+          badge: "جديد",
+          brandLogo: "images/tiptop.jpg",
+          bags: "12 كيس",
+          weight: "2 كجم",
+        },
+        {
+          id: 402,
+          name: "خضروات مشكلة تب توب",
+          description:
+            "مزيج متنوع من الخضروات الطازجة المجمدة، جاهزة للطهي السريع",
+          category: "tiptop",
+          image: "images/tiptop.jpg",
+          brandLogo: "images/tiptop.jpg",
+          bags: "15 كيس",
+          weight: "1 كجم",
+        },
+        {
+          id: 403,
+          name: "بطاطس ودجز تب توب",
+          description: "قطع بطاطس سميكة محضرة بالقشر، مثالية للشواء والتحمير",
+          category: "tiptop",
+          image: "images/tiptop.jpg",
+          brandLogo: "images/tiptop.jpg",
           bags: "10 أكياس",
-          weight: "1.5 كجم للكيس",
+          weight: "1.5 كجم",
+        },
+        {
+          id: 404,
+          name: "حلقات البصل المقرمشة تب توب",
+          description: "حلقات بصل مقرمشة ولذيذة، مثالية كمقبلات أو وجبة جانبية",
+          category: "tiptop",
+          image: "images/tiptop.jpg",
+          brandLogo: "images/tiptop.jpg",
+          bags: "18 كيس",
+          weight: "500 جم",
+        },
+        {
+          id: 501,
+          name: "بطاطس لتوسا الفاخرة",
+          description: "بطاطس بلجيكية فاخرة بجودة عالمية، مقرمشة ولذيذة",
+          category: "lutosa",
+          image: "images/lutosa.jpg",
+          badge: "منتج فاخر",
+          brandLogo: "images/lutosa.jpg",
+          bags: "10 أكياس",
+          weight: "2.5 كجم",
+        },
+        {
+          id: 502,
+          name: "بطاطس لتوسا بالتوابل",
+          description: "بطاطس متبلة بخلطة خاصة من التوابل البلجيكية الأصيلة",
+          category: "lutosa",
+          image: "images/lutosa.jpg",
+          brandLogo: "images/lutosa.jpg",
+          bags: "12 كيس",
+          weight: "2 كجم",
+        },
+        {
+          id: 503,
+          name: "بطاطس ستيك هاوس لتوسا",
+          description:
+            "بطاطس سميكة على الطريقة البلجيكية، مثالية للمطاعم الفاخرة",
+          category: "lutosa",
+          image: "images/lutosa.jpg",
+          brandLogo: "images/lutosa.jpg",
+          bags: "8 أكياس",
+          weight: "3 كجم",
+        },
+        {
+          id: 601,
+          name: "بطاطس كرنكل رووك المموجة",
+          description: "بطاطس مقرمشة بتصميم مموج فريد، تمنح قرمشة استثنائية",
+          category: "crinkle",
+          image: "images/CRRROCK.jpg",
+          brandLogo: "images/CRRROCK.jpg",
+          bags: "14 كيس",
+          weight: "2 كجم",
+        },
+        {
+          id: 602,
+          name: "بطاطس كرنكل الكلاسيكية",
+          description: "بطاطس بالقطع الكلاسيكي، محضرة من أجود أنواع البطاطس",
+          category: "crinkle",
+          image: "images/CRRROCK.jpg",
+          brandLogo: "images/CRRROCK.jpg",
+          bags: "16 كيس",
+          weight: "1.8 كجم",
+        },
+        {
+          id: 603,
+          name: "بطاطس كرنكل الحارة",
+          description: "بطاطس مموجة متبلة بتوابل حارة، نكهة مميزة وقرمشة رائعة",
+          category: "crinkle",
+          image: "images/CRRROCK.jpg",
+          brandLogo: "images/CRRROCK.jpg",
+          bags: "12 كيس",
+          weight: "1.5 كجم",
+        },
+        {
+          id: 701,
+          name: "بطاطس كافنديش الذهبية",
+          description: "بطاطس كندية فاخرة بلون ذهبي مثالي، قرمشة لا مثيل لها",
+          category: "cavendish",
+          image: "images/Cavendish.jpg",
+          badge: "مستورد",
+          brandLogo: "images/Cavendish.jpg",
+          bags: "10 أكياس",
+          weight: "2.5 كجم",
+        },
+        {
+          id: 702,
+          name: "بطاطس كافنديش المقرمشة",
+          description: "بطاطس كندية ممتازة بقرمشة فائقة، الخيار الأمثل للمطاعم",
+          category: "cavendish",
+          image: "images/Cavendish.jpg",
+          brandLogo: "images/Cavendish.jpg",
+          bags: "12 كيس",
+          weight: "2 كجم",
+        },
+        {
+          id: 703,
+          name: "بطاطس كافنديش شرائح رفيعة",
+          description: "بطاطس مقطعة بشرائح رفيعة، مقرمشة للغاية",
+          category: "cavendish",
+          image: "images/Cavendish.jpg",
+          brandLogo: "images/Cavendish.jpg",
+          bags: "15 كيس",
+          weight: "1.5 كجم",
+        },
+        {
+          id: 704,
+          name: "بطاطس كافنديش بالأعشاب",
+          description: "بطاطس متبلة بمزيج من الأعشاب الطبيعية، نكهة رائعة",
+          category: "cavendish",
+          image: "images/Cavendish.jpg",
+          brandLogo: "images/Cavendish.jpg",
+          bags: "10 أكياس",
+          weight: "2 كجم",
+        },
+        {
+          id: 801,
+          name: "بطاطس جوردينا الممتازة",
+          description:
+            "بطاطس أوروبية فاخرة بجودة عالية، مناسبة لجميع أنواع الطهي",
+          category: "jordina",
+          image: "images/jordina.webp",
+          brandLogo: "images/jordina.webp",
+          bags: "12 كيس",
+          weight: "2 كجم",
+        },
+        {
+          id: 802,
+          name: "بطاطس جوردينا الرفيعة",
+          description: "بطاطس مقطعة برفع دقيق، قرمشة خفيفة ومثالية",
+          category: "jordina",
+          image: "images/jordina.webp",
+          brandLogo: "images/jordina.webp",
+          bags: "14 كيس",
+          weight: "1.8 كجم",
+        },
+        {
+          id: 803,
+          name: "خضروات جوردينا المجمدة",
+          description:
+            "تشكيلة متنوعة من الخضروات الطازجة المجمدة بأعلى معايير الجودة",
+          category: "jordina",
+          image: "images/jordina.webp",
+          brandLogo: "images/jordina.webp",
+          bags: "20 كيس",
+          weight: "1 كجم",
+        },
+        {
+          id: 804,
+          name: "بطاطس جوردينا المكعبات",
+          description: "بطاطس مقطعة على شكل مكعبات، مثالية للطبخ السريع",
+          category: "jordina",
+          image: "images/jordina.webp",
+          brandLogo: "images/jordina.webp",
+          bags: "10 أكياس",
+          weight: "2.5 كجم",
         },
       ];
 
-      // Render Products
-      function renderProducts(filter = "all") {
-        const grid = document.getElementById("productsGrid");
-        const filteredProducts =
-          filter === "all"
-            ? products
-            : products.filter((p) => p.category === filter);
+      let currentFilter = "all";
+      let searchTerm = "";
 
-        grid.innerHTML = filteredProducts
-          .map(
-            (product) => `
-                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden fade-in">
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" />
-                    </div>
-                    <div class="p-6">
-                        ${
-                          product.badge
-                            ? `<span class="inline-block bg-gradient-to-r from-sky-400 to-sky-500 text-white text-xs px-3 py-1 rounded-full mb-3">${product.badge}</span>`
-                            : ""
-                        }
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">${
-                          product.name
-                        }</h3>
-                        <p class="text-gray-600 leading-relaxed mb-4">${
-                          product.description
-                        }</p>
-                        <div class="border-t pt-4 space-y-2">
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-box text-sky-400 ml-2"></i>
-                                <span class="font-bold">العدد:</span>
-                                <span class="mr-2">${product.bags}</span>
-                            </div>
-                            <div class="flex items-center text-gray-700">
-                                <i class="fas fa-weight-hanging text-sky-400 ml-2"></i>
-                                <span class="font-bold">الوزن:</span>
-                                <span class="mr-2">${product.weight}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-          )
-          .join("");
+      function renderProducts(filter = "all", search = "") {
+        const grid = document.getElementById("productsGrid");
+        const noResults = document.getElementById("noResults");
+
+        let filteredProducts = products;
+
+        if (filter !== "all") {
+          filteredProducts = filteredProducts.filter(
+            (p) => p.category === filter
+          );
+        }
+
+        if (search) {
+          filteredProducts = filteredProducts.filter(
+            (p) =>
+              p.name.toLowerCase().includes(search.toLowerCase()) ||
+              p.description.toLowerCase().includes(search.toLowerCase())
+          );
+        }
+
+        if (filteredProducts.length === 0) {
+          grid.classList.add("hidden");
+          noResults.classList.remove("hidden");
+        } else {
+          grid.classList.remove("hidden");
+          noResults.classList.add("hidden");
+
+          grid.innerHTML = filteredProducts
+            .map(
+              (product) => `
+                  <div class="product-card glass-effect rounded-2xl shadow-lg overflow-hidden fade-in">
+                      ${
+                        product.badge
+                          ? `<div class="status-badge">${product.badge}</div>`
+                          : ""
+                      }
+                      <div class="product-image m-3">
+                          <img src="${product.image}" alt="${product.name}" />
+                      </div>
+                      <div class="product-content p-5">
+                          <div class="flex items-start justify-between mb-3">
+                              <div class="flex-1">
+                                  <h3 class="text-xl font-bold text-gray-800 mb-2 leading-tight">${
+                                    product.name
+                                  }</h3>
+                              </div>
+                              ${
+                                product.brandLogo
+                                  ? `<img src="${product.brandLogo}" alt="Brand" class="brand-logo" />`
+                                  : ""
+                              }
+                          </div>
+                          <p class="text-gray-600 leading-relaxed text-sm mb-4">${
+                            product.description
+                          }</p>
+                          <div class="divider"></div>
+                          <div class="grid grid-cols-2 gap-2 mt-4">
+                              <div class="info-badge">
+                                  <i class="fas fa-box text-sm"></i>
+                                  <div class="text-right">
+                                      <div class="text-xs opacity-75">العدد</div>
+                                      <div class="font-bold text-sm">${
+                                        product.bags
+                                      }</div>
+                                  </div>
+                              </div>
+                              <div class="info-badge">
+                                  <i class="fas fa-weight-hanging text-sm"></i>
+                                  <div class="text-right">
+                                      <div class="text-xs opacity-75">الوزن</div>
+                                      <div class="font-bold text-sm">${
+                                        product.weight
+                                      }</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              `
+            )
+            .join("");
+        }
+
+        updateCounts();
       }
 
-      // Category Filter
+      function updateCounts() {
+        const categories = [
+          "all",
+          "mamasauce",
+          "maona",
+          "makin",
+          "tiptop",
+          "lutosa",
+          "crinkle",
+          "cavendish",
+          "jordina",
+        ];
+        categories.forEach((cat) => {
+          const count =
+            cat === "all"
+              ? products.length
+              : products.filter((p) => p.category === cat).length;
+          const countEl = document.getElementById(`count-${cat}`);
+          if (countEl) {
+            countEl.textContent = count;
+          }
+        });
+      }
+
+      const searchInput = document.getElementById("searchInput");
+      searchInput.addEventListener("input", (e) => {
+        searchTerm = e.target.value;
+        renderProducts(currentFilter, searchTerm);
+      });
+
       const filterButtons = document.querySelectorAll(".category-filter");
       filterButtons.forEach((button) => {
         button.addEventListener("click", () => {
           filterButtons.forEach((btn) => {
             btn.classList.remove("active", "text-white");
-            btn.classList.add("bg-gray-200", "text-gray-700");
+            btn.classList.add("bg-gray-100", "text-gray-700");
+            btn.querySelector(".product-count").classList.add("hidden");
           });
           button.classList.add("active", "text-white");
-          button.classList.remove("bg-gray-200", "text-gray-700");
+          button.classList.remove("bg-gray-100", "text-gray-700");
+          button.querySelector(".product-count").classList.remove("hidden");
 
-          const category = button.dataset.category;
-          renderProducts(category);
+          currentFilter = button.dataset.category;
+          searchInput.value = "";
+          searchTerm = "";
+          renderProducts(currentFilter, "");
         });
       });
 
-      // Mobile Menu
       const mobileMenuBtn = document.getElementById("mobileMenuBtn");
       const mobileMenu = document.getElementById("mobileMenu");
 
@@ -561,15 +1166,28 @@
         mobileMenu.classList.toggle("hidden");
       });
 
-      // Initial render
       renderProducts();
+      updateCounts();
 
-      // Handle hash navigation
       if (window.location.hash) {
         const hash = window.location.hash.substring(1);
-        if (["maona", "makin", "atyab"].includes(hash)) {
+        const validCategories = [
+          "mamasauce",
+          "maona",
+          "makin",
+          "tiptop",
+          "lutosa",
+          "crinkle",
+          "cavendish",
+          "jordina",
+        ];
+        if (validCategories.includes(hash)) {
           const button = document.querySelector(`[data-category="${hash}"]`);
-          if (button) button.click();
+          if (button) {
+            setTimeout(() => {
+              button.click();
+            }, 100);
+          }
         }
       }
     </script>
