@@ -108,6 +108,7 @@
           height: 120px;
           padding: 15px;
           border-radius: 20px;
+          margin-left: auto;
         }
       }
 
@@ -295,9 +296,10 @@
 
       @media (max-width: 768px) {
         .hero-logo-container {
-          width: 160px;
-          height: 160px;
-
+          width: 180px;
+          height: 180px;
+          border-radius: 28px;
+          margin-bottom: 2rem;
         }
       }
     </style>
@@ -307,12 +309,9 @@
     <!-- Navigation -->
     <nav class="bg-white/95 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
       <div class="container mx-auto px-4">
-        <div
-          class="flex flex-col md:flex-row justify-between items-center py-3"
-        >
-          <div
-            class="flex justify-center items-center w-full md:w-auto mb-2 md:mb-0"
-          >
+        <div class="flex justify-between items-center py-3">
+          <!-- Logo - Right side on mobile, same on desktop -->
+          <div class="flex items-center">
             <img
               src="logo.svg"
               alt="Logo"
@@ -320,8 +319,9 @@
             />
           </div>
 
-          <div class="flex items-center w-full md:w-auto justify-center">
-            <ul class="hidden md:flex space-x-reverse space-x-8 text-lg">
+          <!-- Desktop Menu - Center -->
+          <div class="hidden md:flex items-center flex-1 justify-center">
+            <ul class="flex space-x-reverse space-x-8 text-lg">
               <li>
                 <a href="index.html" class="nav-link text-sky-500 font-bold"
                   >الرئيسية</a
@@ -351,15 +351,17 @@
             </ul>
           </div>
 
+          <!-- Mobile Menu Button - Left side -->
           <button
             id="mobileMenuBtn"
-            class="md:hidden text-2xl text-gray-700 absolute left-4 top-4 hover:text-sky-500 transition"
+            class="md:hidden text-2xl text-gray-700 hover:text-sky-500 transition"
           >
             <i class="fas fa-bars"></i>
           </button>
         </div>
       </div>
 
+      <!-- Mobile Menu -->
       <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
         <ul class="py-4 px-4 space-y-3">
           <li>
